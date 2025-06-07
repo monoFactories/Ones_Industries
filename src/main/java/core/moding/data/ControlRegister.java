@@ -31,7 +31,7 @@ public class ControlRegister extends DualRepository.SingleRepository <ControlReg
     public void add (ControlVariable e) {
         if (e != null) {
             Identifier id = e.id();
-            if (id != null) {
+            if (id.getSpace().equals(modName)) {
                 variables.add(id, e);
                 ControlModManager.controls.add (id, CurrentControl.fromControlVariable(e));
             }
