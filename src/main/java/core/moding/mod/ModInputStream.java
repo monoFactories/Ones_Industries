@@ -42,6 +42,7 @@ public class ModInputStream implements AutoCloseable {
                     parameter = new ModParameter(modName, modFile);
                     Constructor<?> constructor = main.getConstructor(ModParameter.class);
                     Debug.debug("download mod \"" + modName + "\"");
+                    Mod mod = (Mod) constructor.newInstance(parameter);
                     Enumeration<? extends ZipEntry> entries = modJar.entries();
                     Iterator<? extends  ZipEntry> entryIterator = entries.asIterator();
                     while (entryIterator.hasNext()) {
@@ -57,7 +58,7 @@ public class ModInputStream implements AutoCloseable {
                             }
                         }
                     }
-                    return (Mod) constructor.newInstance(parameter);
+                    return mod;
                 }
             } catch (Exception e) {
                 Game.log(Level.WARNING, "Couldn't read", e);
