@@ -2,6 +2,7 @@ package core.moding.mod;
 
 import core.gameActions.Debug;
 import game_logic.Game;
+import game_logic.repositories.Identifier;
 import game_logic.repositories.LanguageRepository;
 import core.moding.ModParameter;
 import core.moding.data.ModRegister;
@@ -56,6 +57,9 @@ public abstract class Mod {
     }
     protected ModFileManager getModFileManager () {
         return modFileManager;
+    }
+    public Identifier getIdentifier (String id) {
+        return id != null ? new Identifier (getParameter().getName(), id) : null;
     }
     public void debug(String s) {
         Debug.debug("[" + modParameter.getName() + "] " + s);
