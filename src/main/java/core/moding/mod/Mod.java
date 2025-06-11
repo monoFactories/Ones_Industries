@@ -25,7 +25,7 @@ public abstract class Mod {
         modLanguage = new LanguageRepository();
     }
     /// can return repository of mod with complete data. To get a ModRepository with data, simply redefine this method to your liking.
-    protected ModRegister createModRepository () {
+    protected AbstractModRegister createModRepository () {
         return new ModRegister(this);/// base realisation
     }
     public final ModParameter getParameter() {

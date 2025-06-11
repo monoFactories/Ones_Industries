@@ -72,9 +72,9 @@ public class ControlRegister extends DualRepository.SingleRepository <ControlReg
         private final Consumer<ControlContext> actionOnLaunch;
         private final Identifier partIdentifier;
 
-        public ControlVariable(MouseButton btn, String name, String id, Consumer<ControlContext> actionOnLaunch, Identifier partIdentifier) {
+        public ControlVariable(MouseButton btn, String name, Identifier id, Consumer<ControlContext> actionOnLaunch, Identifier partIdentifier) {
             if (id != null)
-                this.id = new Identifier(id);
+                this.id = id;
             else throw new IllegalArgumentException("id cannot be null");
             controlEntry = new ControlEntry(btn);
             this.constantName = name != null ? name : "";
@@ -82,9 +82,9 @@ public class ControlRegister extends DualRepository.SingleRepository <ControlReg
             this. partIdentifier = partIdentifier;
         }
 
-        public ControlVariable(KeyCode kc, String name, String id, Consumer<ControlContext> actionOnLaunch, Identifier partIdentifier) {
+        public ControlVariable(KeyCode kc, String name, Identifier id, Consumer<ControlContext> actionOnLaunch, Identifier partIdentifier) {
             if (id != null)
-                this.id = new Identifier(id);
+                this.id = id;
             else throw new IllegalArgumentException("id cannot be null");
             controlEntry = new ControlEntry(kc);
             this.constantName = name != null ? name : "";
