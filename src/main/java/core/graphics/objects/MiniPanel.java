@@ -1,5 +1,6 @@
 package core.graphics.objects;
 
+import game_logic.repositories.Identifier;
 import javafx.scene.layout.AnchorPane;
 import core.graphics.graphichandlers.GraphicProcessor;
 
@@ -46,25 +47,25 @@ public class MiniPanel extends GraphicComponent {
      * @param height see description for the "width" parameter.
     * */
     /// constructors:
-    public MiniPanel(String id) {
+    public MiniPanel(Identifier id) {
         this(id, standard, null, false, getNormalWidth(),getNormalHeight(), false, getNormalX(),getNormalY());
     }
-    public MiniPanel(String id, double width, double height, double x, double y) {
+    public MiniPanel(Identifier id, double width, double height, double x, double y) {
         this(id, standard, null, false, width, height, false, x ,y);
     }
-    public MiniPanel(String id, boolean isRelative, double width, double height, boolean canMoved, double x, double y) {
+    public MiniPanel(Identifier id, boolean isRelative, double width, double height, boolean canMoved, double x, double y) {
         this(id, standard, null, isRelative, width, height, canMoved, x ,y);
     }
-    public MiniPanel(String id, AnchorPane customPane) {
+    public MiniPanel(Identifier id, AnchorPane customPane) {
         this(id, standard, customPane, false, getNormalWidth(), getNormalHeight(), false, getNormalX(), getNormalY());
     }
-    public MiniPanel(String id, AnchorPane customPane, double width, double height, double x, double y) {
+    public MiniPanel(Identifier id, AnchorPane customPane, double width, double height, double x, double y) {
         this(id, standard, customPane, false, width, height, false, x ,y);
     }
-    public MiniPanel(String id, AnchorPane customPane, boolean isRelative, double width, double height, boolean canMoved, double x, double y) {
+    public MiniPanel(Identifier id, AnchorPane customPane, boolean isRelative, double width, double height, boolean canMoved, double x, double y) {
         this(id, standard, customPane, isRelative, width, height, canMoved, x ,y);
     }
-    private MiniPanel(String id, Size size, AnchorPane pane, boolean isRelativeSize, double width, double height, boolean canMoved, double x, double y) {
+    private MiniPanel(Identifier id, Size size, AnchorPane pane, boolean isRelativeSize, double width, double height, boolean canMoved, double x, double y) {
         super(id);
         this.size = size;
         this.isRelative = isRelativeSize;

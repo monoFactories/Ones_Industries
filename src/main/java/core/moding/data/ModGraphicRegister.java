@@ -3,6 +3,7 @@ package core.moding.data;
 import core.management.DualRepository;
 import core.graphics.objects.GraphicComponent;
 import game_logic.repositories.GraphicComponentsRepository;
+import game_logic.repositories.Identifier;
 import game_logic.repositories.LanguageRepository;
 
 public class ModGraphicRegister {
@@ -13,9 +14,9 @@ public class ModGraphicRegister {
         GraphicComponentsRepository.graphics.addEntry(modName, tableGraphics);
     }
 
-    public void add(GraphicComponent gc) {
+    public void add (GraphicComponent gc) {
         if (gc != null) {
-            String gcId = gc.getId();
+            Identifier gcId = gc.getId();
             tableGraphics.add(gcId, gc);
         }
     }
