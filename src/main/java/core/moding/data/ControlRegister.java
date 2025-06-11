@@ -7,8 +7,6 @@ import game_logic.managers.controls.ControlModManager;
 import game_logic.managers.controls.CurrentControl;
 import game_logic.repositories.controls.ConstantModControlRepository;
 import game_logic.repositories.Identifier;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +62,12 @@ public class ControlRegister extends DualRepository.SingleRepository <ControlReg
         ControlVariable var = variables.get(identifier);
         return var != null ? var.getName() : "";
     }
-
+    public ControlVariable createVariable (ControlEntry ce, String name, Identifier id, Consumer<ControlContext> actionOnLaunch, Identifier partIdentifier) {
+        return new ControlVariable(ce, name, new Identifier(modName, id.getName()), actionOnLaunch, partIdentifier);
+    }
+    public ControlPart createPart (String name, Identifier id) {
+        return new ControlPart(name, new Identifier(modName, id.getName()));
+    }
     public static class ControlVariable {
         private final ControlEntry controlEntry;
         private final String constantName;
@@ -72,24 +75,13 @@ public class ControlRegister extends DualRepository.SingleRepository <ControlReg
         private final Consumer<ControlContext> actionOnLaunch;
         private final Identifier partIdentifier;
 
-        public ControlVariable(MouseButton btn, String name, Identifier id, Consumer<ControlContext> actionOnLaunch, Identifier partIdentifier) {
-            if (id != null)
-                this.id = id;
-            else throw new IllegalArgumentException("id cannot be null");
-            controlEntry = new ControlEntry(btn);
+        private ControlVariable (ControlEntry ce, String name, Identifier id, Consumer<ControlContext> actionOnLaunch, Identifier partIdentifier) {
+            if (id == null) throw new IllegalArgumentException("id cannot be null");
+            controlEntry = ce == null ? ControlEntry.EMPTY : ce;
             this.constantName = name != null ? name : "";
+            this.id = id;
             this.actionOnLaunch = actionOnLaunch;
-            this. partIdentifier = partIdentifier;
-        }
-
-        public ControlVariable(KeyCode kc, String name, Identifier id, Consumer<ControlContext> actionOnLaunch, Identifier partIdentifier) {
-            if (id != null)
-                this.id = id;
-            else throw new IllegalArgumentException("id cannot be null");
-            controlEntry = new ControlEntry(kc);
-            this.constantName = name != null ? name : "";
-            this.actionOnLaunch = actionOnLaunch;
-            this. partIdentifier = partIdentifier;
+            this.partIdentifier = partIdentifier;
         }
         public ControlEntry getControlEntry () {
             return controlEntry;
@@ -113,7 +105,8 @@ public class ControlRegister extends DualRepository.SingleRepository <ControlReg
         private final Identifier id;
         private final String constantName;
 
-        public ControlPart (String name, Identifier id) {
+        private ControlPart (String name, Identifier id) {
+            if (id == null) throw new IllegalArgumentException("id can't be null");
             this.constantName = name != null ? name : "";
             this.id = id;
         }

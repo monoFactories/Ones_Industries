@@ -4,6 +4,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 
 public final class ControlEntry {
+    public static final ControlEntry EMPTY = new ControlEntry((KeyCode) null);
+
     private final MouseButton mouseButton;
     private final KeyCode keyCode;
     private final boolean isMouse;
