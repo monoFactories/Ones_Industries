@@ -110,26 +110,17 @@ public class ControlRegister extends DualRepository.SingleRepository <ControlReg
         }
     }
     public static class ControlPart {
-
         private final Identifier id;
-        private String name;
         private final String constantName;
 
         public ControlPart (String name, Identifier id) {
             this.constantName = name != null ? name : "";
-            this.name = this.constantName;
             this.id = id;
         }
         public ControlPart (Identifier id) {
             this(null, id);
         }
         public String getName () {
-            return name;
-        }
-        public void setName (String name) {
-            this.name = name;
-        }
-        public String getConstantName () {
             return this.constantName;
         }
         public Identifier getIdentifier () {
