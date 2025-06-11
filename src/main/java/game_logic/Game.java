@@ -2,6 +2,7 @@ package game_logic;
 
 import core.configs.settings.SettingsHandler;
 import core.gameActions.Debug;
+import game_logic.repositories.Identifier;
 import javafx.scene.control.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -25,7 +26,7 @@ public class Game {
 
     private static final Logger logs = Logger.getLogger(Game.class.getName());
 
-    private static String mainMenuId = "";
+    private static Identifier START_MENU_IDENTIFIER = null;
     static  {
         try {
             File file = new File(FileManager.getDirectoryGame(), "latestLog.txt");
@@ -55,7 +56,7 @@ public class Game {
             GraphicProcessor.initialise(stage);
             SettingsHandler.standardExec();
             Debug.debug("start loading mods");
-            GraphicComponent load = new LoadMenu("load-menu");
+            GraphicComponent load = new LoadMenu(new Identifier("load-menu"));
             GraphicProcessor.Controller.add(load);
             Thread t = new Thread(() -> {
                 SettingsHandler.read();
@@ -90,14 +91,14 @@ public class Game {
         GraphicProcessor.Controller.close();
         System.gc();
     }
-    public static void setStartMenuId (String s) {
-        mainMenuId = s;
+    public static void setStartMenuId (Identifier s) {
+        START_MENU_IDENTIFIER = s;
     }
     private static final class LoadMenu extends GraphicComponent {
         private final ProgressBar progress;
         private final Label state;
         private final Label percent;
-        public LoadMenu(String id) {
+        public LoadMenu(Identifier id) {
             super(id);
             Stop[] stops = new Stop[] {
                     new Stop(0, Color.LIGHTBLUE),
@@ -123,7 +124,7 @@ public class Game {
             if (Loader.isRun) {
                 System.out.println("end the loading all mods, run the game");
                 GraphicProcessor.Controller.delete(getId());
-                GraphicManager.addOnScreen(mainMenuId);
+                GraphicManager.addOnScreen(START_MENU_IDENTIFIER);
             }
             super.standardUpdate();
         }

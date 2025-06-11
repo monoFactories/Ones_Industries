@@ -5,6 +5,7 @@ import core.gameActions.Debug;
 import core.graphics.objects.GraphicComponent;
 
 import game_logic.Game;
+import game_logic.repositories.Identifier;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -363,9 +364,9 @@ public class GraphicProcessor {
     private static StackPane pane;
 
     /// storages, and pre-storage
-    private static final ConcurrentHashMap<String, GraphicComponent> componentsStorage = new ConcurrentHashMap<>();
-    private static final ConcurrentHashMap<String, GraphicComponent> interMediateStorage = new ConcurrentHashMap<>();
-    private static final ConcurrentHashMap<Long, Runnable> intermediateActions = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap <Identifier, GraphicComponent> componentsStorage = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap <Identifier, GraphicComponent> interMediateStorage = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap <Long, Runnable> intermediateActions = new ConcurrentHashMap<>();
     /// stacks
     //private static final Deque<GraphicComponent> pathStack = new ArrayDeque<>();
     //private static final Deque<GraphicComponent> removeStack = new ArrayDeque<>();
@@ -387,9 +388,9 @@ public class GraphicProcessor {
                 Platform.runLater(() -> {
                     //System.out.println("united stack :" + unitedStack + "\npane: " + pane );
                     if (!interMediateStorage.isEmpty()) {
-                        Iterator<Map.Entry<String, GraphicComponent>> interComponentIterator = interMediateStorage.entrySet().iterator();
+                        Iterator<Map.Entry<Identifier, GraphicComponent>> interComponentIterator = interMediateStorage.entrySet().iterator();
                         while ((interComponentIterator.hasNext())) {
-                            Map.Entry<String, GraphicComponent> curr = interComponentIterator.next();
+                            Map.Entry<Identifier, GraphicComponent> curr = interComponentIterator.next();
                             GraphicComponent graph = curr.getValue();
                             if (graph != null) {
                                 GraphicActivities.addComponent(curr.getKey(), graph);
@@ -460,7 +461,7 @@ public class GraphicProcessor {
                 nanoSeconds = 1;
             }
         }
-        static void addComponent (String regID, GraphicComponent graphic) {
+        static void addComponent (Identifier regID, GraphicComponent graphic) {
             Debug.debug("trying add component \"" + regID + "\"");
             try {
                 if (!componentsStorage.containsKey(regID)) {
@@ -473,7 +474,7 @@ public class GraphicProcessor {
                 Game.log(Level.INFO, "An exception was received when calling the \"onAddFromScreen\" function or when adding it to the screen.", th232);
             }
         }
-        static void deleteComponent (String regID, boolean without) {
+        static void deleteComponent (Identifier regID, boolean without) {
             Debug.debug("start deleting: " + regID);
             GraphicComponent graph = componentsStorage.get(regID);
             if (graph != null) {
@@ -510,7 +511,7 @@ public class GraphicProcessor {
             timeOut = timeOut1;
         }
     }
-    private record ComponentEntry(String regID, GraphicComponent gr) { }
+    private record ComponentEntry(Identifier regID, GraphicComponent gr) { }
     public static final class Controller {
         private static void add (Runnable fun) {
             intermediateActions.put(System.nanoTime(), fun);
@@ -533,10 +534,10 @@ public class GraphicProcessor {
         //    if (graph != null)
         //        interMediateStorage.put(mod == null ? graph.getId() : mod.isEmpty() ? graph.getId() : mod + ":" + graph.getId(), graph);
         //}
-        public static void delete (String regID) {
+        public static void delete (Identifier regID) {
             add(() -> GraphicActivities.deleteComponent(regID, true));
         }
-        public static void hide (String regID) {
+        public static void hide (Identifier regID) {
             add(() -> GraphicActivities.deleteComponent(regID, false));
         }
         public static void loadLastFromStack() {

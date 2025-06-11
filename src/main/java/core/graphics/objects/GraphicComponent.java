@@ -1,8 +1,8 @@
 package core.graphics.objects;
 
 import core.configs.languages.LabelDescriptor;
+import game_logic.repositories.Identifier;
 import game_logic.repositories.LanguageRepository;
-import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Control;
 import javafx.scene.control.Labeled;
@@ -22,7 +22,7 @@ import java.util.logging.Level;
 
 public class GraphicComponent {
 
-    private final String id;
+    private final Identifier id;
 
     private final Pane content;
 
@@ -31,7 +31,7 @@ public class GraphicComponent {
 
     private final List<Node> nonUpdatedNodes;
 
-    public GraphicComponent(String id) {
+    public GraphicComponent(Identifier id) {
         if (id == null)
             throw new NullPointerException("id is null");
         this.id = id;
@@ -40,7 +40,7 @@ public class GraphicComponent {
         nonUpdatedNodes = new ArrayList<>();
         labeledContent = new ConcurrentHashMap<>();
     }
-    public GraphicComponent(String id, AnchorPane customPane) {
+    public GraphicComponent(Identifier id, AnchorPane customPane) {
         content = Objects.requireNonNullElseGet(customPane, AnchorPane::new);
         if (id == null)
             throw new NullPointerException("id is null");
@@ -155,7 +155,7 @@ public class GraphicComponent {
             l.setText(LabelDescriptor.descriptor(language, sp));
         });
     }
-    public static GraphicComponent createGameComponent (Map <Node, NodeParameter> components, String name) {
+    public static GraphicComponent createGameComponent (Map <Node, NodeParameter> components, Identifier name) {
         if (name == null || components == null)
             return null;
         GraphicComponent component = new GraphicComponent(name);
@@ -163,7 +163,7 @@ public class GraphicComponent {
         return component;
     }
 
-    public final String getId() {
+    public final Identifier getId() {
         return id;
     }
     public final Pane getAnchorPane () {
