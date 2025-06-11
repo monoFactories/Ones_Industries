@@ -4,8 +4,7 @@ import core.moding.mod.Mod;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ModRegister implements AbstractModRegister{
-
+public class ModRegister implements AbstractModRegister {
     public final ModGraphicRegister graphics;
     public final ControlRegister controls;
     private final ConcurrentHashMap<String, Object> otherRegistries;

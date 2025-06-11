@@ -1,6 +1,7 @@
 package core.moding.mod;
 
 import core.gameActions.Debug;
+import core.moding.data.AbstractModRegister;
 import game_logic.Game;
 import game_logic.repositories.Identifier;
 import game_logic.repositories.LanguageRepository;
@@ -13,7 +14,7 @@ import java.util.logging.Level;
 public abstract class Mod {
     private final ModFileManager modFileManager;
     private final ModParameter modParameter;
-    public final ModRegister modRepository;
+    public final AbstractModRegister modRepository;
     public LanguageRepository modLanguage;
 
     public Mod (ModParameter parameter) {
@@ -45,7 +46,7 @@ public abstract class Mod {
 
     public final void setLanguage (String s) {
         modLanguage = modParameter.loadLanguage(s);
-        modRepository.graphics.translate(modLanguage);
+        modRepository.graphicRegister().translate(modLanguage);
     }
     public final String getTranslate (String id) {
         return modLanguage.get(id);
