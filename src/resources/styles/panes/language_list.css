@@ -1,0 +1,24 @@
+.language-list {
+    -fx-background-color: #858585;
+    -fx-border-color: #9f9f9f;
+    -fx-border-width: 3px;
+    -fx-padding: 15px;
+}
+.language-list .list-cell {
+    -fx-background-color: #939393;
+    -fx-border-color: #adadad;
+    -fx-border-width: 2px;
+    -fx-padding: 7px;
+}
+.language-list .list-cell:hover {
+    -fx-background-color: #9a9a9a;
+    -fx-border-color: #b5b5b5;
+    -fx-border-width: 2px;
+    -fx-padding: 7px;
+}
+.language-list .list-cell:selected {
+    -fx-background-color: #979797;
+    -fx-border-color: #b9b9b9;
+    -fx-border-width: 4px;
+    -fx-padding: 7px;
+}

@@ -1,0 +1,8 @@
+.main-menu-pane {
+    -fx-background-color: #949494;
+}
+.main-menu-base {
+    -fx-background-color: #c2c2c2;
+    -fx-border-color: #d9d9d9;
+    -fx-border-width: 3px;
+}

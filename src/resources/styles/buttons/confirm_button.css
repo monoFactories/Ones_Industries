@@ -1,0 +1,19 @@
+.confirm-button {
+    -fx-background-color: #00ab25;
+    -fx-border-color: #007a1e;
+    -fx-border-width: 3px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.0, 0, 1);
+}
+.confirm-button:hover {
+    -fx-background-color: #00ab25;
+    -fx-border-color: #00c32e;
+}
+.confirm-button:pressed {
+    -fx-background-color: #009621;
+    -fx-border-color: #00c32e;
+}

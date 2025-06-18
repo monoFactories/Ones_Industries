@@ -1,0 +1,148 @@
+.settings-control-pane {
+    -fx-background-color: #404040;
+}
+.settings-control-cancel {
+    -fx-background-color: #8c8c8c;
+    -fx-border-color: #c8c8c8 #8b8b8b #707070 #8b8b8b;
+    -fx-border-width: 2;
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+.settings-control-cancel:hover {
+    -fx-background-color: #8a8a8a;
+    -fx-border-color: #c5c5c5 #898989 #6c6c6c #898989;
+}
+.settings-control-cancel:pressed {
+    -fx-background-color: #808080;
+    -fx-border-color: #b9b9b9 #7f7f7f #626262 #7f7f7f;
+}
+.control-scroll-pane {
+     -fx-background-color: #323232 /*red*/;
+     -fx-border-color: #646464 #2d2d2d #242424 #2d2d2d;
+     -fx-border-width: 2px 2px 2px 2px;
+     -fx-background-insets: 0;
+     -fx-padding: 10;
+ }
+.settings-control-pane:hover {
+    -fx-border-color: #646464 #2d2d2d #242424 #2d2d2d;
+}
+.control-scroll-pane:pressed {
+    -fx-border-color: #646464 #2d2d2d #242424 #2d2d2d;
+}
+.control-scroll-pane > .viewport {
+   -fx-background-color: #242424;
+   -fx-border-color: #242424 #2d2d2d #757575 #2d2d2d;
+   -fx-padding: 10px;
+}
+.control-scroll-pane > .scroll-bar {
+   -fx-background-color: #505050;
+   -fx-padding: 10px;
+}
+/*.control-scroll-pane > .scroll-bar > .thumb {
+    -fx-background-color: #a1a1a1;
+    -fx-border-color: #b3b3b3 #a1a1a1 #929292 #a1a1a1;
+    -fx-border-width: 2px;
+    -fx-background-insets: 0;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+}*/
+.control-scroll-pane > .scroll-bar > .thumb {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #757575, #505050); /* Градиент для эффекта рельефа */
+    -fx-background-insets: 0;
+    -fx-border-color: #3a3a3a; /* Цвет границы ползунка */
+    -fx-border-width: 2px;
+    -fx-padding: 2px; /* Отступы для создания эффекта рельефа */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 2, 0, 0, 1); /* Эффект тени для глубины */
+}
+.control-scroll-pane > .scroll-bar > .track {
+    -fx-background-color: #4a4a4a;
+    -fx-border-color: #454545 4a4a4a #515151 4a4a4a;
+    -fx-border-width: 2px;
+    -fx-background-insets: 0;
+}
+.control-scroll-pane > .scroll-bar > .decrement-button,
+.control-scroll-pane > .scroll-bar > .increment-button {
+    -fx-background-color: #505050; /* Цвет кнопок */
+    -fx-background-insets: 0;
+    -fx-padding: 5px; /* Отступы внутри кнопок */
+}
+.control-scroll-pane > .scroll-bar > .decrement-button:hover,
+.control-scroll-pane > .scroll-bar > .increment-button:hover {
+    -fx-background-color: #646464; /* Цвет кнопок при наведении */
+}
+.control-scroll-vbox {
+    -fx-background-color: #242424;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+}
+.control-scroll-block {
+    -fx-background-color: #575757;
+    -fx-border-color: rgb(110, 110, 110) transparent rgb(70, 70, 70) transparent;
+    -fx-border-width: 2 2 2 2;
+    -fx-padding: 5px;
+    -fx-spacing: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+.control-scroll-block-hide-button {
+    -fx-background-color: #919191;
+    -fx-border-color: #a6a6a6 #949494 #757575 #949494;
+    -fx-border-width: 2;
+    -fx-text-fill: #2b2b2b;
+    -fx-font-size: 14;
+}
+.control-scroll-block-hide-button:hover {
+    -fx-background-color: #8c8c8c;
+    -fx-border-color: #a1a1a1 #8f8f8f #707070 #f8f8f8;
+}
+.control-scroll-block-hide-button:pressed {
+    -fx-background-color: #878787;
+    -fx-border-color: #9c9c9c #8a8a8a #6b6b6b #8a8a8a;
+}
+.control-scroll-block-name {
+    -fx-text-fill: #f7efd9;
+    -fx-font-size: 16;
+}
+.control-scroll-block-first-line {
+    -fx-background-color: #575757;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    /*-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);*/
+}
+.control-scroll-block-content {
+    -fx-background-color: rgb(70, 70, 70);
+    -fx-border-color: rgb(70, 70, 70);
+    -fx-border-width: 1 1 1 1;
+    -fx-padding: 2px;
+    -fx-spacing: 2px;
+    /*-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);*/
+}
+.control-scroll-block-line {
+    -fx-background-color: #575757;
+    -fx-border-color: rgb(110, 110, 110) transparent rgb(70, 70, 70) transparent;
+    -fx-border-width: 2 2 2 2;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+.control-scroll-block-line-label {
+    -fx-text-fill: white;
+    -fx-font-size: 12;
+}
+.control-scroll-block-line-button {
+    -fx-text-fill: black;
+    -fx-font-size: 12;
+    -fx-background-color: #919191;
+    -fx-border-color: #b4b4b4 #a5a5a5 #505050 #a5a5a5;
+    -fx-border-width: 2 2 1 2;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+.control-scroll-block-line-button:hover {
+    -fx-background-color: #8d8d8d;
+    -fx-border-color: #b1b1b1 #a2a2a2 #4e4e4e #a2a2a2;
+}
+.control-scroll-block-line-button:pressed {
+    -fx-background-color: #868686;
+    -fx-border-color: #a9a9a9 #9a9a9a #454545 #9a9a9a;
+}

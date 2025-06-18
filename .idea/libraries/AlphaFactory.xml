@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="AlphaFactory">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../AlphaFactory/out/artifacts/AlphaFactory_jar3/AlphaFactory.jar!/" />
+      <root url="jar://D:/javaLibs/commons-io-2.19.0/commons-io-2.19.0/commons-io-2.19.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

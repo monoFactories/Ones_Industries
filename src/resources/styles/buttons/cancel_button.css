@@ -1,0 +1,19 @@
+.cancel-button {
+    -fx-background-color: #e74c3c;
+    -fx-border-color: #910000;
+    -fx-border-width: 4px;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.0, 0, 1);
+}
+.cancel-button:hover {
+    -fx-background-color: #c0392b;
+    -fx-border-color: #ffefed;
+}
+.cancel-button:pressed {
+    -fx-background-color: #a93226;
+    -fx-border-color: #ffffff;
+}

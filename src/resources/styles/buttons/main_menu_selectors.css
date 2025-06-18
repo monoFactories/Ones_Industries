@@ -1,0 +1,19 @@
+.main-menu-selectors {
+    -fx-background-color: #c2c2c2;
+    -fx-text-fill: #1c1c1c;
+    -fx-background-radius: 10px;
+    -fx-border-color: #696969;
+    -fx-border-width: 3px;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 1);
+    -fx-opacity: 0.9;
+}
+.main-menu-selectors:hover {
+    -fx-background-color: #c8c8c8;
+    -fx-border-color: #808080;
+}
+.main-menu-selectors:pressed {
+    -fx-background-color: #cbcbcb;
+    -fx-border-color: #696969;
+}

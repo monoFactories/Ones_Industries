@@ -1,0 +1,98 @@
+.offline-menu-main {
+    -fx-background-color: #404040;
+}
+.offline-menu-border {
+    -fx-background-color: rgb(90, 90, 90);
+    -fx-border-color: rgb(122, 122, 122) rgb(90, 90, 90) rgb(58, 58, 58);
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-background-radius: 6;
+}
+.offline-menu-back {
+     -fx-background-color: #8c8c8c;
+     -fx-border-color: #c8c8c8 #8b8b8b #707070 #8b8b8b;
+     -fx-border-width: 2;
+     -fx-text-fill: rgb(247, 239, 217);
+     -fx-font-size: 16;
+     -fx-background-radius: 5px;
+     -fx-border-radius: 5px;
+}
+.offline-menu-back:hover {
+    -fx-background-color: #9c9c9c;
+    -fx-border-color: #c8c8c8 #8b8b8b #707070 #8b8b8b;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 10, 0.0, 0, 0);
+}
+.offline-menu-back:pressed {
+    -fx-background-color: #acacac;
+    -fx-border-color: #d8d8d8 #9b9b9b #606060 #9b9b9b;
+}
+.offline-menu-name {
+    -fx-font-size: 24;
+    -fx-text-fill: /*#c2c2c2*/ rgb(247, 239, 217);
+}
+.offline-menu-scroll-vbox {
+    -fx-padding: 10px;
+    -fx-spacing: 2px;
+    /*-fx-background-color: red;*/
+}
+.offline-menu-scroll-pane {
+    -fx-background-color: rgb(80, 80, 80);
+    -fx-border-color: rgb(130, 130, 130) rgb(80, 80, 80) rgb(40, 40, 40) rgb(80, 80, 80);
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-background-insets: 0;
+    -fx-padding: 10;
+}
+.offline-menu-scroll-pane > .viewport {
+   -fx-background-color: rgb(56, 56, 56);
+   -fx-border-color: rgb(56, 56, 56) rgb(65, 65, 65) rgb(137, 137, 137) rgb(65, 65, 65);
+   -fx-padding: 10px;
+}
+.offline-menu-scroll-block {
+    -fx-background-color: rgb(100, 100, 100);
+    -fx-border-color: rgb(150, 150, 150) rgb(100, 100, 100) rgb(60, 60, 60) rgb(100, 100, 100);
+    -fx-spacing: 10;
+    -fx-padding: 8 16 8 16;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.0, 0, 5);
+}
+.offline-menu-scroll-block:hover {
+    -fx-background-color: rgb(255, 195, 84);
+    -fx-border-color: rgb(255, 212, 133) rgb(255, 201, 99) rgb(232, 171, 58) rgb(255, 201, 99);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 0, 0.7), 10, 0.0, 0, 0);
+    -fx-border-width: 2;
+}
+.offline-menu-scroll-block:pressed {
+    -fx-background-color: rgb(252, 164, 0);
+    -fx-border-color: rgb(204, 137, 12) rgb(130, 125, 116) rgb(255, 199, 94) rgb(130, 125, 116);
+    -fx-effect: null;
+    -fx-border-width: 2;
+}
+.offline-menu-block-delete {
+    -fx-border-color: rgb(130, 130, 130);
+    -fx-border-width: 2;
+}
+.offline-menu-block-info {
+    -fx-background-color: transparent;
+    -fx-border-color: rgb(130, 130, 130);
+    -fx-border-width: 1;
+}
+.offline-menu-block-name {
+    -fx-font-size: 13;
+    -fx-text-color: black;
+}
+.offline-float-delete-menu-pane {
+    -fx-background-color: rgb(100, 100, 100) /*red*/;
+    -fx-border-color: rgb(150, 150, 150) rgb(100, 100, 100) rgb(60, 60, 60) rgb(100, 100, 100);
+    -fx-spacing: 10;
+    -fx-padding: 8 16 8 16;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.0, 0, 5);
+}
+.offline-float-info-menu-pane {
+    -fx-background-color: rgb(100, 100, 100) /*red*/;
+    -fx-border-color: rgb(150, 150, 150) rgb(100, 100, 100) rgb(60, 60, 60) rgb(100, 100, 100);
+    -fx-spacing: 10;
+    -fx-padding: 8 16 8 16;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.0, 0, 5);
+}

@@ -1,0 +1,60 @@
+.graphic-menu {
+    -fx-background-color: #323232;
+}
+.graphic-menu-complete-selector {
+    -fx-background-color: #878787;
+    -fx-border-color: #c7c7c7;
+    -fx-border-width: 6px;
+    -fx-font-size: 16px;
+    -fx-text-fill: #e9e9e9;
+    -fx-padding: 10px;
+    -fx-effect: innershadow(gaussian, #808080, 10, 0.5, 0, 0);
+    -fx-background-insets: 5px;
+}
+.graphic-menu-complete-selector:hover {
+    -fx-background-color: #878787;
+    -fx-border-color: #e2e2e2;
+    -fx-text-fill: #f0f0f0;
+}
+.graphic-menu-complete-selector:pressed {
+    -fx-background-color: #939393;
+    -fx-border-color: #e2e2e2;
+    -fx-text-fill: #f8f8f8;
+}
+.graphic-menu-label-field {
+    -fx-background-color: #828282;
+    -fx-border-color: #c0c0c0;
+    -fx-border-width: 3px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #e9e9e9;
+    -fx-padding: 8px;
+    -fx-effect: innershadow(gaussian, #808080, 10, 0.5, 0, 0);
+    -fx-background-insets: 5px;
+}
+.graphic-menu-label-field:hover {
+    -fx-background-color: #858585;
+    -fx-border-color: #c9c9c9;
+    -fx-text-fill: #f0f0f0;
+}
+.graphic-menu-label-field:pressed {
+    -fx-background-color: #909090;
+    -fx-border-color: #e2e2e2;
+    -fx-text-fill: #f8f8f8;
+}
+.fullscreen-checkbox {
+    -fx-text-fill: #e0e0e0; /* Цвет текста чекбокса */
+}
+
+.fullscreen-checkbox:selected {
+    -fx-text-fill: #00ab25; /* Цвет текста чекбокса при выборе */
+}
+
+.fullscreen-checkbox .box {
+    -fx-background-color: #424242; /* Цвет фона чекбокса */
+    -fx-border-color: #555555; /* Цвет границы чекбокса */
+    -fx-border-radius: 5px; /* Закругление углов чекбокса */
+}
+
+.fullscreen-checkbox:hover .box {
+    -fx-border-color: #00c32e; /* Цвет границы чекбокса при наведении */
+}

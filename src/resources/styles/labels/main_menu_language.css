@@ -1,0 +1,16 @@
+.main-menu-language {
+    -fx-background-color: #b8b8b8;
+    -fx-border-color: #8a8a8a;
+    -fx-border-width: 6px;
+    -fx-font-size: 12px;
+    -fx-text-fill: #171717;
+    -fx-text-alignment: center;
+    -fx-padding: 10px;
+}
+.main-menu-language:hover {
+    -fx-background-color: #c1c1c1;
+    -fx-border-color: #8a8a8a;
+    -fx-border-width: 6px;
+    -fx-font-size: 16px;
+    -fx-text-fill: #121212;
+}

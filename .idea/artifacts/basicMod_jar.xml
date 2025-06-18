@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="basicMod:jar">
+    <output-path>$PROJECT_DIR$/../AlphaFactory/out/artifacts/AlphaFactory_jar3/mods</output-path>
+    <root id="archive" name="basicMod.jar">
+      <element id="module-output" name="basicMod" />
+      <element id="extracted-dir" path="D:/javaLibs/commons-io-2.19.0/commons-io-2.19.0/commons-io-2.19.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

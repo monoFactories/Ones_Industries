@@ -1,0 +1,53 @@
+Русский
+interface
+current_language=текущий язык : /{CURRENT_LANG/}
+language=/{CURRENT_LANG/}
+exit_message=Вы уверены, что хотите выйти ?
+main_menu_offline_game_selector=одиночная игра
+main_menu_online_game_selector=сетевая игра
+main_menu_settings_selector=настройки
+main_menu_mods=моды
+exit=выход
+complete=готово
+settings_graphic_selector=графика
+settings_language_selector=язык
+settings_sound_selector=звук
+settings_controls_selector=управление
+graphic_fullscreen=полноэкранный режим
+graphic_brightness=яркость
+graphic_saturation=насыщенность
+graphic_contrast=контраст
+graphic_width=длина
+graphic_height=высота
+fps=фпс
+frame_rate=частота кадров
+confirm=подтвердить
+apply=применить
+cancel=отменить
+control
+move=движение
+move_up=вверх
+move_left=влево
+move_down=вниз
+move_right=вправо
+exit=выход
+interface=интерфейс
+back=назад
+sounds
+transport=транспорт
+mechanisms=механизмы
+overall=общее
+other=остальное
+music=музыка
+interface=интерфейс
+offline_interface
+back=назад
+offline_game=Одиночная игра
+delete=удалить
+confirm_deletion=подтвердить удаление
+path_to_file=путь к файлу
+saved=сохранен
+start_new_game=начать новую игру
+mods=моды
+file_size=размер файла
+play=играть
