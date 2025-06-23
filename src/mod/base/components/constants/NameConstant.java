@@ -20,7 +20,7 @@ public final class NameConstant {
         SETTINGS_SOUND_MENU = local("settings_sound_menu"),
         OFFLINE_MENU = local("offline_menu"),
         OFFLINE_MENU_CONFIRM_MENU = local("offline_menu:confirm_panel"),
-        OFFLINE_MENU_INFO_MENU = local("offline_menu:info_panel)"
+        OFFLINE_MENU_INFO_MENU = local("offline_menu:info_panel)")
         ;
     }
     ///styles

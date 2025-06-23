@@ -41,7 +41,6 @@ public class Base extends SimpleMod {
             Style.exec();
             latch.countDown();
         });
-        ControllerRegister.add();
         Debug.debug("end of fill repository in mod: core");
         Game.setStartMenuId(GraphicRegister.MAIN_PANE.getId());
         Debug.debug("mod: [" + parameter.getName() + "] end load mod");

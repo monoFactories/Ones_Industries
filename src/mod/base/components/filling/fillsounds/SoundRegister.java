@@ -2,13 +2,11 @@ package mod.base.components.filling.fillsounds;
 
 import mod.base.components.constants.SpecialConstant;
 import mod.base.components.constants.TagConstant;
-import core.management.DualRepository;
 import core.gameActions.Debug;
 import javafx.scene.media.Media;
 import mod.base.modification.Base;
 import mod.base.modification.repositories.SimpleModRepository;
 import mod.base.modification.repositories.sounds.MediaTag;
-import mod.base.modification.repositories.sounds.SoundRepository;
 
 import static core.configs.settings.SoundSettings.TypeVolume;
 
@@ -41,7 +39,4 @@ public class SoundRegister {
         }
         return null;
     }
-    /**
-    * @param mediaPath - path to media without "/sounds/ and ".mp3"
-    */
 }
