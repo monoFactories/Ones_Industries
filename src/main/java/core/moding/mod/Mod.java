@@ -22,13 +22,14 @@ public abstract class Mod {
         modFileManager = new ModFileManager(parameter.getName());
         useModParameter(parameter);
         modRepository = createModRepository();
+        if (modRepository == null) throw new NullPointerException ("mod register is null");
         modLanguage = new LanguageRepository();
     }
     /// can return repository of mod with complete data. To get a ModRepository with data, simply redefine this method to your liking.
     protected AbstractModRegister createModRepository () {
         return new ModRegister(this);/// base realisation
     }
-    public AbstractModRegister getModRegister () {
+    public final AbstractModRegister getModRegister () {
         return modRepository;
     }
     public final ModParameter getParameter() {
