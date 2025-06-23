@@ -18,5 +18,4 @@ public class MemoryUtils {
             return String.format("%.2f GB", (byteCountF / GIGABYTE));
         return String.format("%.2f TB", (byteCountF / TERABYTE));
     }
-    public static void init() {}
 }

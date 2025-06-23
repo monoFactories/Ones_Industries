@@ -156,7 +156,7 @@ public class SoundMenu extends SoundsGraphicComponent {
             double h = 10;
             double w = 39.5;
             return switch (type) {
-                // otstup 12
+                // ot s tup 12
                 case OVERALL -> createRelativeSizeAndCoordinate(5, 25, w, h);
                 case MUSIC -> createRelativeSizeAndCoordinate(5, 47, w, h);
                 case INTERFACE -> createRelativeSizeAndCoordinate(5, 69, w, h);

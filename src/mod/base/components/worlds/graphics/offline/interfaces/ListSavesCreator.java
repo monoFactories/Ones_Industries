@@ -34,13 +34,13 @@ public class ListSavesCreator {
         target.getChildren().clear();
         List<Save> saves = SavesManager.saves();
         saves.forEach(save -> {
-            Label name = new Label(save.description.name());
+            Label name = new Label(save.description().name());
             name.getStyleClass().add(StyleConstant.OFFLINE_MENU.BLOCK_NAME);
             Button info = getInfoButton(save, deleteFlag);
             SoundsGraphicComponent.setSoundsHandlers(info);
-            String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(save.lastEditDate));
+            String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(save.lastEditDate()));
             Label lastDate = new Label(date);
-            Label size = new Label(MemoryUtils.convertByteCount(save.size));
+            Label size = new Label(MemoryUtils.convertByteCount(save.size()));
             Region parser = new Region();
             HBox.setHgrow(parser, Priority.ALWAYS);
             ImageView delete = getDeleteButton(save, deleteFlag);
@@ -81,7 +81,7 @@ public class ListSavesCreator {
     }
     static void addConfirmDelete (Save save, AtomicBoolean deleteFlag, Runnable anotherAction) {
         ConfirmMiniPanel confirmDelete = new ConfirmMiniPanel(NameConstant.MENU_IDENTIFIER.OFFLINE_MENU_CONFIRM_MENU, createRelativeSizeAndCoordinate(52.5, 55, 42.5, 40), createRelativeSizeAndCoordinate(5, 55, 42.5, 40), "OK", "CANCEL", ae1 -> {
-            SavesManager.deleteSave(save.file.getName());
+            SavesManager.deleteSave(save.file().getName());
             deleteFlag.set(true);
             if (anotherAction != null) {
                 try {
@@ -102,5 +102,4 @@ public class ListSavesCreator {
         confirmDelete.setCanMoved(true);
         GraphicProcessor.Controller.add(confirmDelete);
     }
-    public static void init() {}
 }

@@ -30,7 +30,8 @@ public class ControlsStorage {
         });
     }
     public void clear () {
-
+        sortedParts.clear();
+        parts.clear();
     }
     //public ConcurrentHashMap<String, ModControlsStorage> getModsStorage() {
     //    return modsStorage;

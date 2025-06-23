@@ -54,9 +54,7 @@ public class Customizer {
             slider.setShowTickLabels(true);
 
             // Связываем изменение ползунка с текстовым полем
-            slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-                purposeField.setText(String.valueOf(newValue.intValue()));
-            });
+            slider.valueProperty().addListener((observable, oldValue, newValue) -> purposeField.setText(String.valueOf(newValue.intValue())));
 
             // Связываем изменение текстового поля с ползунком
             purposeField.textProperty().addListener((observable, oldVal, newVal) -> {

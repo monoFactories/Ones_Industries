@@ -32,5 +32,4 @@ public class AdvancedMusicPlayer {
     public void setComplete (boolean b) {
         isComplete = b;
     }
-    public static void init(){}
 }

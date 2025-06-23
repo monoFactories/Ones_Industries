@@ -74,9 +74,7 @@ public class ControlMenu extends SoundsGraphicComponent {
         ControlsExecutor.executor.addHandler();
     }
     private void toScreen () {
-        controlsStorage.getSortedParts().forEach(((s, stringIdentifierTreeMap) -> stringIdentifierTreeMap.forEach((partName, identifier) -> {
-            createTab(partName, controlsStorage.getParts().get(identifier));
-        })));
+        controlsStorage.getSortedParts().forEach(((s, stringIdentifierTreeMap) -> stringIdentifierTreeMap.forEach((partName, identifier) -> createTab(partName, controlsStorage.getParts().get(identifier)))));
     }
 
     //private void addModTab (ModControlsStorage mcs) {
