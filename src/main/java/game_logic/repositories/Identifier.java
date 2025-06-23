@@ -13,7 +13,7 @@ public final class Identifier implements Cloneable {
         this.space = space;
     }
     public Identifier(String space, String name) {
-        this(assertParameter(name), assertParameter(space), false);
+        this((name), (space), false);
     }
     private Identifier(String[] a) {
         this(a[0], a[1]);
@@ -68,19 +68,19 @@ public final class Identifier implements Cloneable {
         return complete;
     }
 
-    static String assertParameter (String space) {
-        if (!testParameter(space))
-            throw new IllegalArgumentException("space: \"" + space + "\" should only store characters: 0-9, Aa-Zz, Аа-Яя and etc");
-        return space;
-    }
-    static boolean testParameter (String space) {
-        for (char a : space.toCharArray()) {
-            if (!testChar(a))
-                return false;
-        }
-        return true;
-    }
-    static boolean testChar (char a) {
-        return a > 0x2F &&  (a < 0x450);
-    }
+    //static String assertParameter (String space) {
+    //    if (!testParameter(space))
+    //        throw new IllegalArgumentException("space: \"" + space + "\" should only store characters: 0-9, Aa-Zz, Аа-Яя and etc");
+    //    return space;
+    //}
+    //static boolean testParameter (String space) {
+    //    for (char a : space.toCharArray()) {
+    //        if (!testChar(a))
+    //            return false;
+    //    }
+    //    return true;
+    //}
+    //static boolean testChar (char a) {
+    //    return a > 0x2F &&  (a < 0x450);
+    //}
 }
