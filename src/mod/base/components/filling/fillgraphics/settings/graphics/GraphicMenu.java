@@ -171,7 +171,7 @@ public class GraphicMenu extends SoundsGraphicComponent {
     }
     @Override
     public void onAddFromScreen() {
-        System.out.println("fill text in graphic menu");
+        //System.out.println("fill text in graphic menu");
         setGraphicSettings();
         setText();
     }

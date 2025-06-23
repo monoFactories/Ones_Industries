@@ -39,7 +39,7 @@ public class SettingComponent extends SoundsGraphicComponent {
         Button language = new Button(LanguageConstant.LANGUAGE_SELECTOR);
         language.setId(SpecialConstant.INTERFACE.ID_ENABLED_SOUND + ";");
         language.getStyleClass().add(NameConstant.SETTING_MENU_SELECTOR_STYLE);
-        language.setOnAction(ae -> GraphicManager.loadComponent(getId(), GraphicRegister.SETTINGS_GRAPHIC_MENU.getId()));
+        language.setOnAction(ae -> GraphicManager.loadComponent(getId(), GraphicRegister.SETTINGS_LANGUAGE_MENU.getId()));
         addNode(language, createRelativeSizeAndCoordinate(10, 35, 30, 10));
 
         Label languageLabel = new Label(LanguageConstant.CURRENT_LANGUAGE);

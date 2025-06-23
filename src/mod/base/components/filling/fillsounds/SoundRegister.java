@@ -10,7 +10,6 @@ import mod.base.modification.repositories.sounds.MediaTag;
 
 import static core.configs.settings.SoundSettings.TypeVolume;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.logging.Level;
