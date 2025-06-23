@@ -31,7 +31,7 @@ public final class GraphicRegister {
             if (function != null) {
                 function.accept (graphicComponent);
             }
-            Base.getMod().modRepository.graphicRegister().add(graphicComponent);
+            Base.getMod().getModRegister().graphicRegister().add(graphicComponent);
             return graphicComponent;
         }
         return null;

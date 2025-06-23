@@ -7,7 +7,7 @@ import mod.base.modification.Base;
 public class Translator {
     public static String reTranslateLabel (String text) {
         try {
-            return LabelDescriptor.descriptor(ModsRepository.mods.get(Base.parameter.getName()).modLanguage, text);
+            return LabelDescriptor.descriptor(Base.getMod().modLanguage, text);
         } catch (Exception e) {
             return text;
         }

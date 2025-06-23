@@ -78,7 +78,9 @@ public final class SavesManager {
         boolean inArchive = BaseSettingsHandler.getBaseSettings().getSave().savingInArchive;
         if (name == null)
             return;
-        String[] mods = ModsRepository.mods.keySet().toArray(new String[0]);
+        List<String> modsList = new ArrayList<>();
+        ModsRepository.forEach((s, m) -> modsList.add(s));
+        String[] mods = modsList.toArray(new String[0]);
         LevelDescription description = new LevelDescription(name, mods);
         File saves = Base.files.unitedFile(pathToSaves);
         if (inArchive) {

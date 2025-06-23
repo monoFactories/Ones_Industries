@@ -35,7 +35,7 @@ public class ModControlsStorage {
                     LanguageRepository thisPartLanguage = thisPartMod != null ? thisPartMod.modLanguage : language;
                     if (controlPart != null) {
                         controlsStorage.getParts().computeIfAbsent(partIdentifier, ID -> {
-                            controlsStorage.getSortedParts().get(modName).put(LanguageModManager.translate (controlPart.getConstantName(), thisPartLanguage), ID);
+                            controlsStorage.getSortedParts().get(modName).put(LanguageModManager.translate (controlPart.getName(), thisPartLanguage), ID);
                             return new ArrayList<>();
                         }).add(new CurrentControlView(currentControl, controlVariable.id(), name));
                         return;

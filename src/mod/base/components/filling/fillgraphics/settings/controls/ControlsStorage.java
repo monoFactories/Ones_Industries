@@ -20,7 +20,7 @@ public class ControlsStorage {
     public void generate () {
         ModsRepository.forEach((s, n) -> {
             sortedParts.put(s, new TreeMap<>());
-            ControlRegister constantControls = n.modRepository.controls;
+            ControlRegister constantControls = n.getModRegister().controlRegister();
             LanguageRepository modLanguage = n.modLanguage;
             if (modLanguage == null)
                 modLanguage = new LanguageRepository();

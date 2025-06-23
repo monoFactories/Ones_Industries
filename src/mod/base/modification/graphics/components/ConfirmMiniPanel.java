@@ -2,6 +2,7 @@ package mod.base.modification.graphics.components;
 
 import core.graphics.graphichandlers.GraphicProcessor;
 import core.graphics.objects.NodeParameter;
+import game_logic.repositories.Identifier;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -15,7 +16,7 @@ public final class ConfirmMiniPanel extends SoundMiniPanel {
     private final EventHandler<ActionEvent> okAction;
     private final EventHandler<ActionEvent> cancelAction;
 
-    public ConfirmMiniPanel(String id, NodeParameter okParam, NodeParameter cancelParam, String okText, String cancelText, EventHandler<ActionEvent> okAction, EventHandler<ActionEvent> cancelAction, String okStyle, String cancelStyle) {
+    public ConfirmMiniPanel(Identifier id, NodeParameter okParam, NodeParameter cancelParam, String okText, String cancelText, EventHandler<ActionEvent> okAction, EventHandler<ActionEvent> cancelAction, String okStyle, String cancelStyle) {
         super(id);
         if (okParam == null || cancelParam == null)
             throw new NullPointerException("parameters couldn't be null");
@@ -44,6 +45,4 @@ public final class ConfirmMiniPanel extends SoundMiniPanel {
         }
         GraphicProcessor.Controller.delete(super.getId());
     }
-
-    public static void init(){}
 }

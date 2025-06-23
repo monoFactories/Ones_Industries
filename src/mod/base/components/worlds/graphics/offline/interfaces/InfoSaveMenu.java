@@ -1,10 +1,10 @@
 package mod.base.components.worlds.graphics.offline.interfaces;
 
+import game_logic.repositories.Identifier;
 import mod.base.components.constants.LanguageConstant;
 import mod.base.components.constants.NameConstant;
 import mod.base.components.constants.SpecialConstant;
 import mod.base.components.constants.StyleConstant;
-import core.constants.*;
 import mod.base.components.logics.Translator;
 import core.gameActions.Debug;
 import core.graphics.graphichandlers.GraphicProcessor;
@@ -31,7 +31,7 @@ public class InfoSaveMenu extends SoundMiniPanel {
 
     private static InfoSaveCreator creator;
 
-    public InfoSaveMenu (String id) {
+    public InfoSaveMenu (Identifier id) {
         super(id);
     }
     public static InfoSaveMenu create (Save save, AtomicBoolean deleteFlag) {
