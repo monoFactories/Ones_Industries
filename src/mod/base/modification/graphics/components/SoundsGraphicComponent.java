@@ -15,6 +15,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
+import mod.base.modification.Base;
 import mod.base.modification.repositories.sounds.AdvancedMusicPlayer;
 import mod.base.modification.repositories.sounds.MediaTag;
 import mod.base.modification.repositories.sounds.SoundRepository;
@@ -47,13 +48,16 @@ public class SoundsGraphicComponent extends GraphicComponent {
         }
     }
     private static void play(String soundTag) {
-        MediaTag media = SoundRepository.sounds.get(SoundTagStorage.getNextID(soundTag));
+        if (soundTag == null)
+            return;
+        MediaTag media = SoundRepository.sounds.get (SoundTagStorage.getNextID(soundTag));
         if (media != null) {
             Media realMedia = media.media();
             double volume = SettingsHandler.settings.getSound().getTypedVolume(media.type()) / 100.0;
             double overallVolume = SettingsHandler.settings.getSound().getTypedVolume(SoundSettings.TypeVolume.OVERALL) / 100.0;
             AdvancedMusicPlayer.singleMediaPlayer.play(realMedia, volume * overallVolume);
-        }
+        } else
+            Base.getMod().debug("not found media for tag: " + soundTag);
     }
     public static void setSoundsHandlers (Node node) {
         EventHandler<? super MouseEvent> entered = node.getOnMouseEntered();

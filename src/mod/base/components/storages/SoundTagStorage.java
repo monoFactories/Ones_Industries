@@ -1,6 +1,8 @@
 package mod.base.components.storages;
 
+import core.gameActions.Debug;
 import game_logic.repositories.Identifier;
+import mod.base.modification.Base;
 import mod.base.modification.repositories.sounds.SoundRepository;
 
 import java.util.ArrayList;
@@ -51,6 +53,7 @@ public class SoundTagStorage {
             if (!ids.isEmpty()) {
                 Identifier nextId = ids.get(counter);
                 counter = (counter + 1) % ids.size();
+                Base.getMod().debug("get media with id : " + nextId);
                 return nextId;
             }
             return null;
