@@ -27,6 +27,7 @@ public class SoundTagStorage {
     }
     public static Identifier getNextID (String tag) {
         if (tag != null) {
+            Base.getMod().debug ("all entries in tag storage: " + haveTagsMap);
             TagEntry entry = haveTagsMap.get(tag);
             if (entry != null)
                 return entry.getNextID();
@@ -57,6 +58,17 @@ public class SoundTagStorage {
                 return nextId;
             }
             return null;
+        }
+        public String toString () {
+            StringBuilder sb = new StringBuilder("[\n\ttag = \"").append(tag).append("\",\n\tids: [");
+            StringBuilder listBuilder = new StringBuilder();
+            ids.forEach(identifier -> listBuilder.append("\t\t").append('"').append(identifier).append("\",\n"));
+            if (!ids.isEmpty()) {
+                String s = listBuilder.substring (0, listBuilder.length() - 2);
+                sb.append('\n').append(s).append("\n\t");
+            }
+            sb.append("],\n\tcounter: ").append(counter).append("]");
+            return sb.toString();
         }
     }
 }
