@@ -81,6 +81,6 @@ public final class Identifier implements Cloneable {
         return true;
     }
     static boolean testChar (char a) {
-        return a > 0x2F && (!(a >= 0x3A && a <= 0x40) && !(a >= 0x250 && a <= 0x36F) && !(a >= 0x5B && a <= 0x60) && !(a >= 0x7B && a <= 0xBF)) && (a < 0x450);
+        return a > 0x2F &&  (a < 0x450);
     }
 }

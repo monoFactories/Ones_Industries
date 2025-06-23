@@ -56,7 +56,7 @@ public class Game {
             GraphicProcessor.initialise(stage);
             SettingsHandler.standardExec();
             Debug.debug("start loading mods");
-            GraphicComponent load = new LoadMenu(new Identifier("load-menu"));
+            GraphicComponent load = new LoadMenu(new Identifier("load_menu"));
             GraphicProcessor.Controller.add(load);
             Thread t = new Thread(() -> {
                 SettingsHandler.read();

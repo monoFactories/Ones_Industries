@@ -14,7 +14,7 @@ import java.util.logging.Level;
 public abstract class Mod {
     private final ModFileManager modFileManager;
     private final ModParameter modParameter;
-    public final AbstractModRegister modRepository;
+    private final AbstractModRegister modRepository;
     public LanguageRepository modLanguage;
 
     public Mod (ModParameter parameter) {
@@ -27,6 +27,9 @@ public abstract class Mod {
     /// can return repository of mod with complete data. To get a ModRepository with data, simply redefine this method to your liking.
     protected AbstractModRegister createModRepository () {
         return new ModRegister(this);/// base realisation
+    }
+    public AbstractModRegister getModRegister () {
+        return modRepository;
     }
     public final ModParameter getParameter() {
         return modParameter;
