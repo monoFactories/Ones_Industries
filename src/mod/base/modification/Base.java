@@ -42,7 +42,7 @@ public class Base extends SimpleMod {
             latch.countDown();
         });
         Debug.debug("end of fill repository in mod: core");
-        Game.setStartMenuId(GraphicRegister.MAIN_PANE.getId());
+
         Debug.debug("mod: [" + parameter.getName() + "] end load mod");
         try {
             latch.await();
@@ -64,6 +64,7 @@ public class Base extends SimpleMod {
 
     @Override
     protected void actionsOnRun() {
+        Game.setStartMenuId(GraphicRegister.MAIN_PANE.getId());
         SoundTagStorage.parseSounds();
         BaseSettingsHandler.load();
         BaseSettingsHandler.save();

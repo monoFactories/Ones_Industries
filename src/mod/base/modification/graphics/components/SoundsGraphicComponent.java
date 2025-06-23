@@ -27,7 +27,7 @@ public class SoundsGraphicComponent extends GraphicComponent {
         super(id, customPane);
     }
 
-    public SoundsGraphicComponent(Identifier id) {
+    public SoundsGraphicComponent (Identifier id) {
         super(id);
     }
 

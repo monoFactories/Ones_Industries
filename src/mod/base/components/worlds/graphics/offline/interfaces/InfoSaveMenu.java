@@ -63,21 +63,21 @@ public class InfoSaveMenu extends SoundMiniPanel {
             /*ConfirmMiniPanel confirmDelete = new ConfirmMiniPanel(        NameConstant.MENU_NAME.OFFLINE_MENU_CONFIRM_MENU,        createRelativeSizeAndCoordinate(52.5, 55, 42.5, 40),        createRelativeSizeAndCoordinate(5, 55, 42.5, 40),        "OK",        "CANCEL",        ae1 -> {    SavesManager.deleteSave(save.file.getName());        deleteFlag.set(true);            }, null, "", "");confirmDelete.addNode(new Label(Translator.reTranslateLabel(LanguageConstant.OFFLINE_MENU.CONFIRM_DELETION)), createRelativeSizeAndCoordinate(10, 10, 80, 20));confirmDelete.setRelativeSize(true);confirmDelete.setWidth(25);confirmDelete.setHeight(15);confirmDelete.setCanMoved(true);GraphicProcessor.Controller.add(confirmDelete);*/
         });
         info.addNode(trashImage, createRelativeSizeAndCoordinate(90, 90, 5, 8));
-        Label name = new Label(save.description.name());
+        Label name = new Label(save.description().name());
         info.addNode (name, createRelativeSizeAndCoordinate(5, 5, 80, 5));
-        Label pathToFile = new Label(Translator.reTranslateLabel(LanguageConstant.OFFLINE_MENU.PATH_TO_FILE) + ": \"" + save.file + "\"");
+        Label pathToFile = new Label(Translator.reTranslateLabel(LanguageConstant.OFFLINE_MENU.PATH_TO_FILE) + ": \"" + save.file() + "\"");
         info.addNode (pathToFile, createRelativeSizeAndCoordinate(5, 15, 90, 5));
         Label modsLabel = new Label (Translator.reTranslateLabel(LanguageConstant.OFFLINE_MENU.MODS));
         info.addNode(modsLabel, createRelativeSizeAndCoordinate(5, 25, 15, 5));
         ListView<String> mods = new ListView<>();
-        mods.getItems().addAll(save.description.lastMods());
+        mods.getItems().addAll(save.description().lastMods());
         info.addNode(mods, createRelativeSizeAndCoordinate(5, 35, 30, 60));
         Button play = new Button(Translator.reTranslateLabel(LanguageConstant.OFFLINE_MENU.PLAY));
         TagManagement.addTagInId(play, SpecialConstant.INTERFACE.ID_ENABLED_SOUND);
         info.addNode (play, createRelativeSizeAndCoordinate(40, 35, 50, 8));
-        Label saved = new Label(Translator.reTranslateLabel(LanguageConstant.OFFLINE_MENU.SAVED) + ": " + (new SimpleDateFormat("HH:mm dd/MM/yyyy").format(new Date(save.lastEditDate))));
+        Label saved = new Label(Translator.reTranslateLabel(LanguageConstant.OFFLINE_MENU.SAVED) + ": " + (new SimpleDateFormat("HH:mm dd/MM/yyyy").format(new Date(save.lastEditDate()))));
         info.addNode(saved, createRelativeSizeAndCoordinate(25, 25, 40, 5));
-        Label size = new Label(Translator.reTranslateLabel(LanguageConstant.OFFLINE_MENU.FILE_SIZE) + ":" + FileUtils.byteCountToDisplaySize(save.size));
+        Label size = new Label(Translator.reTranslateLabel(LanguageConstant.OFFLINE_MENU.FILE_SIZE) + ":" + FileUtils.byteCountToDisplaySize(save.size()));
         info.addNode(size, createRelativeSizeAndCoordinate(70, 25, 25, 5));
         return info;
     }
