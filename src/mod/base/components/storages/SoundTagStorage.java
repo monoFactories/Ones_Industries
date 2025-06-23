@@ -14,6 +14,7 @@ public class SoundTagStorage {
     private static final ConcurrentHashMap<String, TagEntry> haveTagsMap = new ConcurrentHashMap<>();
 
     public static void parseSounds () {
+        Base.getMod().debug("start parsing sounds");
         SoundRepository.sounds.forEach((modName, mediaRepository) -> mediaRepository.forEach((id, mediaTag) -> {
             String[] tags = mediaTag.tags();
             if (tags.length > 0) {

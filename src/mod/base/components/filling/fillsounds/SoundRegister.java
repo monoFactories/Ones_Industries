@@ -10,11 +10,13 @@ import mod.base.modification.repositories.sounds.MediaTag;
 
 import static core.configs.settings.SoundSettings.TypeVolume;
 
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.logging.Level;
 
 public class SoundRegister {
-    public static MediaTag
+    public final static MediaTag
     INTERFACE_MOUSE_ENTERED = register (SpecialConstant.SOUND_ID.MOUSE_ENTERED, "interfaces/enter", TypeVolume.INTERFACE, TagConstant.SOUND.INTERFACE_MOUSE_ENTERED),
     INTERFACE_MOUSE_CLICKED = register(SpecialConstant.SOUND_ID.MOUSE_CLICKED, "interfaces/click", TypeVolume.INTERFACE, TagConstant.SOUND.INTERFACE_MOUSE_CLICKED),
     INTERFACE_MOUSE_EXITED = register(SpecialConstant.SOUND_ID.MOUSE_EXITED, "interfaces/exit", TypeVolume.INTERFACE, TagConstant.SOUND.INTERFACE_MOUSE_EXITED),
@@ -23,6 +25,7 @@ public class SoundRegister {
 
     private static MediaTag register (String localId, String relativeMediaPath, TypeVolume type, String... tags) {
         if (localId != null && relativeMediaPath != null) {
+            Base.getMod().debug ("add sound with parameters: " + localId + ", " + relativeMediaPath + ", " + type + ", " + Arrays.toString(tags));
             String fullPath = "/resources/sounds/" + relativeMediaPath + ".mp3";
             URL u = SoundRegister.class.getResource(fullPath);
             if (u != null) {
