@@ -51,7 +51,7 @@ public class ModInputStream implements AutoCloseable {
                             Debug.debug("trying load class \"" + entry.getName() + "\" from mod: " + modName);
                             String nameClass = entry.getName().replace(".class", "").replace('/', '.');
                             try {
-                                Class<?> loading = loader.loadClass(nameClass);
+                                Class<?> loading = Class.forName(nameClass, true, loader);
                                 Debug.debug("class: " + loading.getPackageName() + " was load");
                             } catch (ClassNotFoundException | NoClassDefFoundError classNotFound) {
                                 Debug.debug("couldn't load class: " + nameClass);
