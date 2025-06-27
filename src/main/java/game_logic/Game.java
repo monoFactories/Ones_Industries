@@ -23,6 +23,18 @@ import java.util.logging.*;
 public class Game {
 
     public static final String GAME_NAME = "AlphaFactory";
+    public static final Formatter STANDARD_LOGS_FORMATTER = new Formatter() {
+        @Override
+        public String format(LogRecord record) {
+            return String.format("[%1$tF %1$tT] [%2$s] (thread/%3$s): %4$s %5$s",
+                    record.getMillis(),
+                    record.getLevel(),
+                    Thread.currentThread().getName(),
+                    record.getMessage(),
+                    record.getThrown() != null ? "\n" + "\t·" + record.getThrown() : ""
+            ) + "\n";
+        }
+    };
 
     private static final Logger logs = Logger.getLogger(Game.class.getName());
 
@@ -31,18 +43,7 @@ public class Game {
         try {
             File file = new File(FileManager.getDirectoryGame(), "latestLog.txt");
             FileHandler handler = new FileHandler(file.getAbsolutePath());
-            handler.setFormatter(new Formatter() {
-                @Override
-                public String format(LogRecord record) {
-                    return String.format("[%1$tF %1$tT] [%2$s] (thread/%3$s): %4$s %5$s",
-                            record.getMillis(),
-                            record.getLevel(),
-                            Thread.currentThread().getName(),
-                            record.getMessage(),
-                            record.getThrown() != null ? "\n" + "\t·" + record.getThrown() : ""
-                    ) + "\n";
-                }
-            });
+            handler.setFormatter(STANDARD_LOGS_FORMATTER);
             logs.addHandler(handler);
         } catch (IOException e) {
             logs.log(Level.WARNING, "error when creating the logs file", e);
@@ -75,6 +76,17 @@ public class Game {
     }
     public static void log (Level lvl, String msg, Throwable throwable) {
         logs.log(lvl, msg, throwable);
+    }
+    public static void printLog (Level lvl, String msg, Throwable throwable) {
+        long currentMillis = System.currentTimeMillis();
+        String formatted = String.format("[%1$tF %1$tT] [%2$s] (thread/%3$s): %4$s %5$s",
+                currentMillis,
+                lvl,
+                Thread.currentThread().getName(),
+                msg,
+                throwable != null ? "\n\t·" + throwable : ""
+        ) + "\n";
+        System.out.print(formatted);
     }
     public static void crash (Throwable ex) {
         log(Level.SEVERE, "game is crashed", ex);

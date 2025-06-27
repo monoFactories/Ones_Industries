@@ -1,16 +1,22 @@
 package core.configs.settings;
 
+import com.google.gson.annotations.SerializedName;
+
 public class InfoSettings {
 
+    @SerializedName("language")
     private String lastLanguage;
-    private boolean isDebuggingTrue;
+    @SerializedName("debug")
+    private boolean debuggingOn;
+    @SerializedName("debugSaving")
+    private boolean debugSaving;
 
     public InfoSettings(String lastLanguage) {
         this.lastLanguage = lastLanguage;
     }
     public InfoSettings () {
         lastLanguage = "english";
-        this.isDebuggingTrue = false;
+        this.debuggingOn = false;
     }
     public String getLastLanguage() {
         return lastLanguage;
@@ -21,14 +27,18 @@ public class InfoSettings {
     }
 
     public boolean isDebugging () {
-        return isDebuggingTrue;
+        return debuggingOn;
     }
+
+    public boolean isDebugSaving() {
+        return debugSaving;
+    }
+
     @Override
     public String toString() {
-        return "InfoSettings {" +
-                "lastLanguage=\"" + lastLanguage + '"' +
-                '}';
+        return "infoSetting: {\n" + "\tlastLanguage: " + lastLanguage + ",\n\tdebuggingMode: " + debuggingOn + ",\n\tdebugSaving: " + debugSaving + "\n}";
     }
+
     public static InfoSettings check (InfoSettings info) {
         if (info != null) {
             if (info.lastLanguage == null) {

@@ -3,6 +3,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.annotations.SerializedName;
 import game_logic.Game;
 import game_logic.managers.controls.ControlModManager;
 import game_logic.managers.controls.CurrentModsController;
@@ -11,6 +12,7 @@ import java.io.*;
 import java.util.logging.Level;
 
 public class Settings {
+    @SerializedName("graphic")
     private GraphicSettings graphicSettings;
     private SoundSettings sound;
     private InfoSettings info;
@@ -66,11 +68,14 @@ public class Settings {
     }
 
     public static Settings readSettings (File settingsFile) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(CurrentModsController.class, CurrentModsController.CURRENT_MODS_CONTROLS_JSON_ADAPTER)
+                .create();
         if (settingsFile != null) {
             try (Reader read = new InputStreamReader(new FileInputStream(settingsFile))) {
                 return gson.fromJson(read, Settings.class);
-            } catch (IOException | JsonIOException | JsonSyntaxException io) {
+            } catch (IOException | JsonIOException | JsonSyntaxException | NullPointerException io ) {
                 Game.log(Level.WARNING, "Couldn't read settings from file :" + settingsFile.getName(), io);
             }
         }
@@ -78,7 +83,10 @@ public class Settings {
     }
     public static void writeSettings (File settingsFile, Settings settings) {
         if (settingsFile != null && settings != null) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Gson gson = new GsonBuilder()
+                    .setPrettyPrinting()
+                    .registerTypeAdapter(CurrentModsController.class, CurrentModsController.CURRENT_MODS_CONTROLS_JSON_ADAPTER)
+                    .create();
             try (FileWriter writer = new FileWriter(settingsFile)) {
                 gson.toJson(settings, writer);
             } catch (IOException e) {

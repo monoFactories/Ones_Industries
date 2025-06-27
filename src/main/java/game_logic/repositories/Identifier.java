@@ -1,9 +1,13 @@
 package game_logic.repositories;
 
+import com.google.gson.*;
 import game_logic.Game;
+
+import java.lang.reflect.Type;
 
 public final class Identifier implements Cloneable {
     public static final char STANDARD_SEPARATION_CHARACTER = ':';
+    public static final IdentifierJson IDENTIFIER_JSON_ADAPTER = new IdentifierJson();
 
     private final String space;
     private final String name;
@@ -68,19 +72,28 @@ public final class Identifier implements Cloneable {
         return complete;
     }
 
-    //static String assertParameter (String space) {
-    //    if (!testParameter(space))
-    //        throw new IllegalArgumentException("space: \"" + space + "\" should only store characters: 0-9, Aa-Zz, Аа-Яя and etc");
-    //    return space;
-    //}
-    //static boolean testParameter (String space) {
-    //    for (char a : space.toCharArray()) {
-    //        if (!testChar(a))
-    //            return false;
-    //    }
-    //    return true;
-    //}
-    //static boolean testChar (char a) {
-    //    return a > 0x2F &&  (a < 0x450);
-    //}
+    public static final class IdentifierJson implements JsonSerializer<Identifier>, JsonDeserializer<Identifier> {
+
+        @Override
+        public JsonElement serialize(Identifier identifier, Type type, JsonSerializationContext jsonSerializationContext) {
+            JsonArray jsonId = new JsonArray();
+            jsonId.add (identifier.space);
+            jsonId.add (identifier.name);
+            return jsonId;
+        }
+
+        @Override
+        public Identifier deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+            if (jsonElement.isJsonArray()) {
+                JsonArray jsonArray = jsonElement.getAsJsonArray();
+                if (jsonArray.size() >= 2) {
+                    String space = jsonArray.get(0).getAsString();
+                    String name = jsonArray.get(1).getAsString();
+                    return new Identifier (space, name);
+                }
+                throw new JsonParseException("Expected array of size >= 2 for Identifier");
+            }
+            throw new JsonParseException("Expected JSON array for Identifier");
+        }
+    }
 }

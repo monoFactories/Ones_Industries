@@ -4,6 +4,7 @@ import core.management.ControlEntry;
 import core.management.DualRepository;
 import game_logic.managers.controls.ControlContext;
 import game_logic.managers.controls.ControlModManager;
+import game_logic.managers.controls.ControlsExecutor;
 import game_logic.managers.controls.CurrentControl;
 import game_logic.repositories.controls.ConstantModControlRepository;
 import game_logic.repositories.Identifier;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ControlRegister extends DualRepository.SingleRepository <ControlRegister.ControlVariable> {
+public class ControlRegister {
     private final String modName;
 
     private final DualRepository.SingleRepository<ControlPart> partsList;
@@ -32,6 +33,10 @@ public class ControlRegister extends DualRepository.SingleRepository <ControlReg
             if (id.getSpace().equals(modName)) {
                 variables.add(id, e);
                 ControlModManager.controls.add (id, CurrentControl.fromControlVariable(e));
+                Consumer<ControlContext> action = e.actionOnLaunch;
+                if (action != null) {
+                    ControlsExecutor.executor.add(id, action);
+                }
             }
         }
     }
@@ -51,7 +56,7 @@ public class ControlRegister extends DualRepository.SingleRepository <ControlReg
         partsList.forEach((s, cp) -> p.add(cp));
         return p;
     }
-    public List<ControlVariable> getVariables () {
+    public List<ControlVariable> getVariablesAsList () {
         List<ControlVariable> v = new ArrayList<>(variables.count());
         variables.forEach((s, variable) -> v.add(variable));
         return v;
@@ -68,6 +73,26 @@ public class ControlRegister extends DualRepository.SingleRepository <ControlReg
     public ControlPart createPart (String name, Identifier id) {
         return new ControlPart(name, new Identifier(modName, id.getName()));
     }
+
+    public DualRepository.SingleRepository<ControlPart> getPartsList() {
+        return partsList;
+    }
+    public DualRepository.SingleRepository<ControlVariable> getVariables() {
+        return variables;
+    }
+    public String getModName() {
+        return modName;
+    }
+
+    @Override
+    public String toString() {
+        return "ControlRegister {" +
+                "modName = \"" + modName + "\"\n" +
+                "partsList = " + partsList + ",\n" +
+                "variables=" + variables +
+                '}';
+    }
+
     public static class ControlVariable {
         private final ControlEntry controlEntry;
         private final String constantName;

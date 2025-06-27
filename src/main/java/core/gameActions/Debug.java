@@ -5,8 +5,9 @@ import game_logic.Game;
 
 import java.util.function.Supplier;
 import java.util.logging.Level;
+import java.util.logging.LogRecord;
 
-public class Debug {
+public final class Debug {
     private Debug() {
         throw new IllegalArgumentException();
     }
@@ -17,8 +18,7 @@ public class Debug {
         write(lvl, message, null);
     }
     public static void debug(Supplier<String> message) {
-        if (SettingsHandler.settings.getInfo().isDebugging())
-            write(Level.INFO, message.get(), null);
+        write(Level.INFO, message.get(), null);
     }
     public static void debug(Level lvl, Supplier<String> message) {
         if (SettingsHandler.settings.getInfo().isDebugging())
@@ -28,7 +28,13 @@ public class Debug {
         write(lvl, message, Al26);
     }
     private static void write(Level lvl, String message, Throwable Ne15) {
-        if (SettingsHandler.settings.getInfo().isDebugging())
-            Game.log(lvl, message, Ne15);
+        if (SettingsHandler.settings == null)
+            return;
+        if (SettingsHandler.settings.getInfo().isDebugging()) {
+            if (SettingsHandler.settings.getInfo().isDebugSaving())
+                Game.log(lvl, message, Ne15);
+            else
+                Game.printLog(lvl, message, Ne15);
+        }
     }
 }

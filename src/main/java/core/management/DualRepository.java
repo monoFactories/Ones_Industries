@@ -1,15 +1,17 @@
 package core.management;
 
+import com.google.gson.*;
 import core.gameActions.Debug;
 import game_logic.repositories.Identifier;
 
+import java.lang.reflect.Type;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiConsumer;
 
 public class DualRepository <T> {
-    protected ConcurrentHashMap<String, SingleRepository<T>> repository = new ConcurrentHashMap<>();
+    protected ConcurrentHashMap<String, AbstractSingleRepository<T>> repository = new ConcurrentHashMap<>();
 
-    public void addEntry (String entryName, SingleRepository<T> t) {
+    public void addEntry (String entryName, AbstractSingleRepository<T> t) {
         Debug.debug(() -> "add in DualRepository new entry, with name: " + entryName + ", with content: [\n" + t + "]");
         if (entryName != null)
             repository.put(entryName, t);
@@ -20,7 +22,7 @@ public class DualRepository <T> {
             repository.remove(entryName);
         }
     }
-    public SingleRepository<T> getEntry (String entryName) {
+    public AbstractSingleRepository<T> getEntry (String entryName) {
         if (entryName != null)
             return repository.get(entryName);
         return null;
@@ -38,29 +40,29 @@ public class DualRepository <T> {
     public void add (Identifier identifier, T t) {
         if (t != null && identifier != null) {
             Debug.debug("add in DualRepository new key-value with address: \"" + identifier + "\", with value: " + t);
-            SingleRepository <T> c = repository.computeIfAbsent(identifier.getSpace(), k -> new SingleRepository<>());
-            c.endRepository.put (identifier.getName(), t);
+            AbstractSingleRepository <T> c = repository.computeIfAbsent(identifier.getSpace(), k -> new SingleRepository<>());
+            c.add(identifier.getName(), t);
         }
     }
-    public void remove (Identifier id) {;
+    public void remove (Identifier id) {
         if (id != null) {
             Debug.debug("remove from DualRepository key-value with address: \"" + id + "\"");
-            SingleRepository<T> c = repository.get(id.getSpace());
+            AbstractSingleRepository<T> c = repository.get(id.getSpace());
             if (c != null) {
-                c.endRepository.remove(id.getName());
+                c.remove(id.getName());
             }
         }
     }
     public T get (Identifier id) {
         if (id != null) {
-            SingleRepository<T> c = repository.get (id.getSpace());
+            AbstractSingleRepository<T> c = repository.get (id.getSpace());
             if (c != null) {
-                return c.endRepository.get(id.getName());
+                return c.get(id.getName());
             }
         }
         return null;
     }
-    public void forEach (BiConsumer<String, SingleRepository<T>> act) {
+    public void forEach (BiConsumer<String, AbstractSingleRepository<T>> act) {
         if (act != null) {
             repository.forEach(act);
         }
