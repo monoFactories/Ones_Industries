@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -445,6 +446,7 @@ public class GraphicProcessor {
             stage.setMinHeight(MIN_HEIGHT);
             stage.setMinWidth(MIN_WIDTH);
             stage.setFullScreenExitHint("");
+            stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             stage.show();
             renderCycleThread.setDaemon(true);
             renderCycleThread.setName("support-render-thread");
