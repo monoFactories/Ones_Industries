@@ -1,8 +1,10 @@
 package mod.base.modification;
 
+import core.management.DualRepository;
 import core.moding.ModParameter;
 import core.moding.data.AbstractModRegister;
 import core.moding.mod.Mod;
+import mod.base.modification.data.blocks.Block;
 import mod.base.modification.repositories.BlockRepository;
 import mod.base.modification.repositories.SimpleModRepository;
 import mod.base.modification.repositories.sounds.SoundRepository;
@@ -17,7 +19,7 @@ public class SimpleMod extends Mod {
     protected AbstractModRegister createModRepository() {
         SimpleModRepository simpleModRepository = new SimpleModRepository (this);
         String name = getParameter().getName();
-        BlockRepository.BLOCK_REGISTER.addEntry(name, simpleModRepository.blocks);
+        BlockRepository.BLOCK_REGISTER.addEntry(name, (DualRepository.AbstractSingleRepository<Block>) simpleModRepository.blocks);
         SoundRepository.sounds.addEntry (name, simpleModRepository.media);
         return simpleModRepository;
     }

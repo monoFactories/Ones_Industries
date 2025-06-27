@@ -1,5 +1,6 @@
 package mod.base.components.filling.fillgraphics.settings;
 
+import core.graphics.graphichandlers.GraphicProcessor;
 import game_logic.repositories.Identifier;
 import mod.base.components.constants.LanguageConstant;
 import mod.base.components.constants.NameConstant;

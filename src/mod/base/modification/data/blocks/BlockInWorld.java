@@ -1,6 +1,6 @@
 package mod.base.modification.data.blocks;
 
 
-public interface BlockInWorld <B extends Block> {
-    B getBlock();
+public interface BlockInWorld {
+    Block getBlock();
 }

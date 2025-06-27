@@ -2,6 +2,7 @@ package mod.base.components.filling.fillgraphics.settings.controls;
 
 import core.configs.languages.Language;
 import core.management.DualRepository;
+import core.management.DualRepository.SingleRepository;
 import core.moding.data.ControlRegister;
 import core.moding.mod.Mod;
 import game_logic.managers.LanguageModManager;
@@ -23,8 +24,9 @@ public class ModControlsStorage {
 //    public ModControlsStorage (LanguageRepository language, ControlRegister constantControls, DualRepository.SingleRepository <CurrentControl> currentControls, String modName, ConcurrentHashMap <Identifier, List<CurrentControlView>> parts, TreeMap <String, TreeMap <String, Identifier>> sortedParts) {
 //        generate(language, constantControls, currentControls, modName, parts, sortedParts);
 //    }
-    public static void generate (LanguageRepository language, ControlRegister constantControls, DualRepository.SingleRepository<CurrentControl> currentControls, String modName, ControlsStorage controlsStorage) {
-        constantControls.forEach((str, controlVariable) -> {
+    public static void generate (LanguageRepository language, ControlRegister constantControls, DualRepository.AbstractSingleRepository<CurrentControl> currentControls, String modName, ControlsStorage controlsStorage) {
+        SingleRepository <ControlRegister.ControlVariable> var0 = constantControls.getVariables();
+        var0.forEach((str, controlVariable) -> {
             CurrentControl currentControl = currentControls.get (controlVariable.id());
             if (currentControl != null) {
                 String name = LanguageModManager.translate(controlVariable.getName(), language);
@@ -48,10 +50,6 @@ public class ModControlsStorage {
                 }).add(new CurrentControlView(currentControl, controlVariable.id(), name));
             }
         });
-
-
-
-
         //Set<String> modsSet = new HashSet<> ();
         //currentControls.forEach ((s, currentControl) -> modsSet.add(s));
         //Set<Identifier> noUsing = modsSet.stream().map(s -> new Identifier(modName, s)).collect(Collectors.toSet());
@@ -62,13 +60,13 @@ public class ModControlsStorage {
         //    ControlRegister.ControlPart modPart = new ControlRegister.ControlPart (modName, noUsing.toArray(new Identifier[0]));
         //    addPart(modPart, language, constantControls, modName, noUsing, false);
         //}
-        constantControls.forEach((str, controlVar) -> {
-            Identifier identifier = controlVar.id();
-            CurrentControl cc = ControlModManager.controls.get(identifier);
-            if (cc != null) {
-
-            }
-        });
+                      //constantControls.forEach((str, controlVar) -> {
+                      //    Identifier identifier = controlVar.id();
+                      //    CurrentControl cc = ControlModManager.controls.get(identifier);
+                      //    if (cc != null) {
+              //
+                      //    }
+                      //});
     }
     private void addPart (ControlRegister.ControlPart part, LanguageRepository language, ControlRegister constantControl, String modName, Set<Identifier> noUsing, boolean isRemoveFromSet) {
         //Identifier[] property = part.getProperty();

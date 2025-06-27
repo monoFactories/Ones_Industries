@@ -1,8 +1,9 @@
 package mod.base.modification.data.blocks;
 
+import mod.base.modification.data.blocks.worlds.TerrainWorldBlock;
 import mod.base.modification.data.textures.AbstractTexture;
 
-public abstract class Block <T extends BlockInWorld> {
+public abstract class Block  {
     protected AbstractTexture texture;
     private final String id;
 
@@ -17,6 +18,8 @@ public abstract class Block <T extends BlockInWorld> {
         return id;
     }
 
-    public abstract BlockTextureParameter getTexture (T blockInWorld);
-    public abstract T getBlock();
+    public abstract BlockTextureParameter getTexture (BlockInWorld blockInWorld);
+    public abstract BlockInWorld getBlock();
+
+    public abstract BlockTextureParameter getTexture(TerrainWorldBlock blockWorld);
 }

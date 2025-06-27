@@ -52,7 +52,7 @@ public class ControlMenu extends SoundsGraphicComponent {
         Button close = new Button(COMPLETE);
         close.setId(SpecialConstant.INTERFACE.ID_ENABLED_SOUND + ";");
         close.setOnAction(ae -> {
-            GraphicProcessor.Controller.delete(getId());
+            GraphicProcessor.Controller.delete (getId());
             GraphicProcessor.Controller.loadLastFromStack();
         });
         close.getStyleClass().add(StyleConstant.CONTROL_MENU.CONTROLS_EXIT);
@@ -74,7 +74,8 @@ public class ControlMenu extends SoundsGraphicComponent {
         ControlsExecutor.executor.addHandler();
     }
     private void toScreen () {
-        controlsStorage.getSortedParts().forEach(((s, stringIdentifierTreeMap) -> stringIdentifierTreeMap.forEach((partName, identifier) -> createTab(partName, controlsStorage.getParts().get(identifier)))));
+        //System.out.println("sorted parts: " + controlsStorage.getSortedParts() + ", \n parts" + controlsStorage.getParts());
+        controlsStorage.getSortedParts().forEach((s, stringIdentifierTreeMap) -> stringIdentifierTreeMap.forEach((partName, identifier) -> createTab(partName, controlsStorage.getParts().get(identifier))));
     }
 
     //private void addModTab (ModControlsStorage mcs) {
@@ -153,7 +154,6 @@ public class ControlMenu extends SoundsGraphicComponent {
     private void handlerButtons (Identifier id) {
         GraphicProcessor.Controller.setKeyPress(keyEvent -> {
             KeyCode selected = keyEvent.getCode();
-            //ControlModManager.controls.setControl(id, new ControlModManager.CurrentControl(selected));
             ControlModManager.controls.add(id, new CurrentControl(selected));
             update();
             ControlsExecutor.executor.addHandler();

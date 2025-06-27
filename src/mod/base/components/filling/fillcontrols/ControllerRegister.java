@@ -28,7 +28,11 @@ public class ControllerRegister {
             MOVE_LEFT = register(LocalIdentifierConstant.CONTROL_REGISTER.KEY_MOVE_LEFT, LanguageConstant.CONTROL.KEY_LEFT, null, MOVE_PART_ID, new ControlEntry(KeyCode.A)),
             MOVE_DOWN = register(LocalIdentifierConstant.CONTROL_REGISTER.KEY_MOVE_DOWN, LanguageConstant.CONTROL.KEY_DOWN, null, MOVE_PART_ID, new ControlEntry(KeyCode.S)),
             MOVE_RIGHT = register(LocalIdentifierConstant.CONTROL_REGISTER.KEY_MOVE_RIGHT, LanguageConstant.CONTROL.KEY_RIGHT, null, MOVE_PART_ID, new ControlEntry(KeyCode.D)),
-            INTERFACE_BACK = register(LocalIdentifierConstant.CONTROL_REGISTER.KEY_INTERFACE_BACK, LanguageConstant.CONTROL.KEY_BACK, context -> GraphicProcessor.Controller.back(), INTERFACE_PART_ID, new ControlEntry(KeyCode.DELETE))
+            INTERFACE_BACK = register(LocalIdentifierConstant.CONTROL_REGISTER.KEY_INTERFACE_BACK, LanguageConstant.CONTROL.KEY_BACK, context -> {
+                GraphicProcessor.Controller.back();
+                System.out.println("back() called");
+            }, INTERFACE_PART_ID, new ControlEntry(KeyCode.DELETE)),
+            TEST = register(Base.getID("test"), "test", null, null, null)
     ;
 
 

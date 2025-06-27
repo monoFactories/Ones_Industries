@@ -1,16 +1,14 @@
 package mod.base.modification;
 
 import core.moding.data.AbstractModRegister;
+import game_logic.managers.controls.ControlsExecutor;
 import game_logic.repositories.Identifier;
-import mod.base.components.constants.NameConstant;
 import mod.base.components.filling.fillgraphics.GraphicRegister;
 import mod.base.components.logics.settings.BaseSettingsHandler;
 import mod.base.components.storages.SoundTagStorage;
 import mod.base.components.worlds.graphics.offline.files.OfflineFileChecker;
 import core.gameActions.Debug;
 import core.moding.ModParameter;
-import mod.base.components.filling.fillcontrols.ControllerRegister;
-import mod.base.components.filling.fillgraphics.MainMenu;
 import mod.base.components.logics.Style;
 import core.moding.mod.ModFileManager;
 import game_logic.Game;
@@ -66,7 +64,8 @@ public class Base extends SimpleMod {
         Game.setStartMenuId(GraphicRegister.MAIN_PANE.getId());
         SoundTagStorage.parseSounds();
         BaseSettingsHandler.load();
-        BaseSettingsHandler.save();
+        ControlsExecutor.executor.addHandler();
+
     }
     public static SimpleMod getMod() {
         return base;

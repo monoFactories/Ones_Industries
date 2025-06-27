@@ -24,9 +24,8 @@ public class ControlsStorage {
             LanguageRepository modLanguage = n.modLanguage;
             if (modLanguage == null)
                 modLanguage = new LanguageRepository();
-            DualRepository.SingleRepository<CurrentControl> currentControls = ControlModManager.controls.getEntry(s);
+            DualRepository.AbstractSingleRepository<CurrentControl> currentControls = ControlModManager.controls.getEntry(s);
             ModControlsStorage.generate(modLanguage, constantControls, currentControls, s, this);
-
         });
     }
     public void clear () {
