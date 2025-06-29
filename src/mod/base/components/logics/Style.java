@@ -27,6 +27,7 @@ public final class Style {
             regM ("control_menu");
             regM("sound_menu");
             regM("offline_menu");
+            regM("new_game");
         } catch (Exception e) {
             System.out.println("not correct in style");
             Game.log(Level.INFO, "error initializing the style", e);

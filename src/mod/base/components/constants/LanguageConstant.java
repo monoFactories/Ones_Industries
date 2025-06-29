@@ -58,13 +58,22 @@ public final class LanguageConstant {
         PLAY = "/[offline_interface:play/]"
         ;
     }
+    public static final class NEW_GAME_MENU {
+        public static final String
+        BACK = "/[offline_new_game_menu:cancel/]",
+        NAME = "/[offline_new_game_menu:name/]",
+        PLAY = "/[offline_new_game_menu:play/]",
+        MAIN = "/[offline_new_game_menu:main/]",
+        SEED = "/[offline_new_game_menu:seed/]"
+        ;
+    }
     public static final class CONTROL {
         public final static String
         MOVE_PART = "control:move",
-        KEY_UP = "control:up",
-        KEY_LEFT = "control:left",
-        KEY_DOWN = "control:down",
-        KEY_RIGHT = "control:right",
+        KEY_UP = "control:move_up",
+        KEY_LEFT = "control:move_left",
+        KEY_DOWN = "control:move_down",
+        KEY_RIGHT = "control:move_right",
         INTERFACE_PART = "control:interface",
         KEY_EXIT = "control:exit",
         KEY_BACK = "control:back"

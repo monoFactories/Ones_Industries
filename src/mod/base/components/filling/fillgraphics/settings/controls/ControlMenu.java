@@ -62,6 +62,9 @@ public class ControlMenu extends SoundsGraphicComponent {
     @Override
     public void onAddFromScreen() {
         ControlsExecutor.executor.addHandler();
+        controlsStorage.clear();
+        content.getChildren().clear();
+        buttonsList.clear();
         controlsStorage.generate();
         toScreen();
     }

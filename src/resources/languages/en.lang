@@ -1,53 +1,64 @@
-English
-interface
-current_language=current language : /{CURRENT_LANG/}
-language=/{CURRENT_LANG/}
-exit_message=Are you sure you want to get out?
-main_menu_offline_game_selector=offline game
-main_menu_online_game_selector=online game
-main_menu_settings_selector=settings
-main_menu_mods=mods
-exit=exit
-complete=complete
-settings_graphic_selector=graphic
-settings_language_selector=language
-settings_sound_selector=sound
-settings_controls_selector=control
-graphic_fullscreen=full screen mode
-graphic_brightness=brightness
-graphic_saturation=saturation
-graphic_contrast=contrast
-graphic_width=width
-graphic_height=height
-fps=fps
-frame_rate=frame rate
-confirm=confirm
-apply=apply
-cancel=cancel
-control
-move=move
-move_up=up
-move_left=left
-move_down=down
-move_right=right
-exit=exit
-interface=interface
-back=back
-sounds
-transport=transport
-mechanisms=mechanisms
-overall=overall
-other=other
-music=music
-interface=interface
-offline_interface
-back=back
-offline_game=Offline game
-delete=delete
-confirm_deletion=confirm deletion
-path_to_file=file path
-saved=saved
-start_new_game=create new game
-mods=mods
-file_size=file size
-play=play
+{
+    "name": "English",
+    "interface": {
+        "current_language": "current language : /{CURRENT_LANG/}",
+        "language": "/{CURRENT_LANG/}",
+        "main_menu_offline_game_selector": "offline game",
+        "main_menu_online_game_selector": "online game",
+        "main_menu_settings_selector": "settings",
+        "main_menu_mods": "mods",
+        "exit": "exit",
+        "complete": "complete",
+        "settings_graphic_selector": "graphic",
+        "settings_language_selector": "language",
+        "settings_sound_selector": "sound",
+        "settings_controls_selector": "control",
+        "graphic_fullscreen": "full screen mode",
+        "graphic_brightness": "brightness",
+        "graphic_saturation": "saturation",
+        "graphic_contrast": "contrast",
+        "graphic_width": "width",
+        "graphic_height": "height",
+        "fps": "fps",
+        "frame_rate": "frame rate",
+        "confirm": "confirm",
+        "apply": "apply",
+        "cancel": "cancel"
+    },
+    "offline_interface": {
+          "back": "back",
+          "offline_game": "offline game",
+          "delete": "delete",
+          "confirm_deletion": "confirm deletion",
+          "path_to_file": "file path",
+          "saved": "saved",
+          "start_new_game": "create new game",
+          "mods": "mods",
+          "file_size": "file size"
+    },
+    "offline_new_game_menu": {
+        "cancel": "cancel",
+        "name": "new game",
+        "play": "play",
+        "seed": "seed",
+        "main": "main"
+    },
+    "control": {
+        "move": "move",
+        "move_up": "up",
+        "move_left": "left",
+        "move_down": "down",
+        "move_right": "right",
+        "exit": "exit",
+        "interface": "interface",
+        "back": "back"
+    },
+    "sounds": {
+        "transport": "transport",
+        "mechanisms": "mechanisms",
+        "overall": "overall",
+        "other": "other",
+        "music": "music",
+        "interface": "interface"
+    }
+}

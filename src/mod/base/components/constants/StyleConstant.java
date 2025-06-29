@@ -43,4 +43,18 @@ public final class StyleConstant {
         FLOAT_INFO_PANE = "offline-float-info-menu-pane"
         ;
     }
+    public static final class NEW_GAME_MENU {
+        public static final String
+        ROOT = "new-game-menu-root",
+        TITLE = "new-game-menu-title",
+        BUTTON = "new-game-menu-button",
+        PLAY = "new-game-menu-play",
+        CANVAS = "new-game-menu-canvas",
+        SWITCHER_NO_ACTIVE = "new-game-menu-switcher-no-active",
+        SWITCHER_ACTIVE = "new-game-menu-switcher-active",
+        SEED_LABEL = "new-game-seed-label",
+        SEED_FIELD = "new-game-seed-field",
+        SEED_BUTTON = "new-game-seed-button"
+        ;
+    }
 }

@@ -19,8 +19,9 @@ public final class NameConstant {
         SETTINGS_CONTROL_MENU = local("settings_control_menu"),
         SETTINGS_SOUND_MENU = local("settings_sound_menu"),
         OFFLINE_MENU = local("offline_menu"),
-        OFFLINE_MENU_CONFIRM_MENU = local("offline_menu:confirm_panel"),
-        OFFLINE_MENU_INFO_MENU = local("offline_menu:info_panel)")
+        OFFLINE_MENU_CONFIRM_MENU = local("offline_menu_confirm_panel"),
+        OFFLINE_MENU_INFO_MENU = local("offline_menu_info_panel)"),
+        NEW_GAME_MENU = local("new_game_menu")
         ;
     }
     ///styles

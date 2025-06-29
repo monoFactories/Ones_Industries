@@ -1,5 +1,6 @@
 package mod.base.components.worlds.graphics.offline.interfaces;
 
+import game_logic.GraphicManager;
 import game_logic.repositories.Identifier;
 import mod.base.components.constants.LanguageConstant;
 import mod.base.components.constants.NameConstant;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import mod.base.components.filling.fillgraphics.GraphicRegister;
 import mod.base.modification.Base;
 import mod.base.modification.graphics.components.SoundsGraphicComponent;
 import mod.base.modification.graphics.utils.TagManagement;
@@ -44,12 +46,15 @@ public class OfflineMenu extends SoundsGraphicComponent {
         back.getStyleClass().add(StyleConstant.OFFLINE_MENU.MAIN_BUTTONS);
         back.setOnAction(ae -> back());
         addNode(back, NodeParameter.createRelativeSizeAndCoordinate(2, 88, 14, 5));
+        //
         Label offlineGame = new Label(LanguageConstant.OFFLINE_MENU.OFFLINE_GAME);
         offlineGame.getStyleClass().add(StyleConstant.OFFLINE_MENU.LABEL_WITH_NAME);
         addNode(offlineGame, NodeParameter.createRelativeSizeAndCoordinate(2, 5, 14, 10));
+        //
         Button startNew = new Button(LanguageConstant.OFFLINE_MENU.CREATE_NEW_GAME);
         startNew.getStyleClass().add(StyleConstant.OFFLINE_MENU.MAIN_BUTTONS);
         TagManagement.addTagInId(startNew, SpecialConstant.INTERFACE.ID_ENABLED_SOUND);
+        startNew.setOnAction(ae -> GraphicManager.loadComponent (getId(), GraphicRegister.NEW_GAME_MENU.getId()));
         addNode(startNew, NodeParameter.createRelativeSizeAndCoordinate(2, 68, 14, 10));
     }
 

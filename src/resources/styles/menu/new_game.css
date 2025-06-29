@@ -1,0 +1,138 @@
+/* Фон всего меню */
+.new-game-menu-root {
+    -fx-background-color: #404040; /* Тёмный фон */
+    -fx-padding: 20px;
+    -fx-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Заголовок меню */
+.new-game-menu-title {
+    -fx-text-fill: #EEEEEE; /* Светло-серый */
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 20px 0;
+    -fx-alignment: center;
+}
+
+/* Кнопки меню: светлый фон, темный текст, обводка */
+.new-game-menu-button {
+    -fx-background-color: #8c8c8c;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.15) , 2, 0, 0, 1 );
+    -fx-border-color: #c8c8c8 #8b8b8b #707070 #8b8b8b;
+    -fx-border-width: 2;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(247, 239, 217);
+    -fx-font-size: 16;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 7px;
+}
+
+.new-game-menu-button:hover {
+    -fx-background-color: #959595;
+    -fx-border-color: #d0d0d0 #949494 #797979 #949494;
+    -fx-text-fill: rgb(244, 243, 218);
+}
+
+.new-game-menu-button:pressed {
+    -fx-background-color: #858585;
+    -fx-border-color: #707070 #8b8b8b #c8c8c8 #8b8b8b;
+    -fx-text-fill: #rgb(223, 222, 186);
+}
+.new-game-menu-play {
+    -fx-background-color: rgb(7, 189, 45);
+    -fx-border-color: rgb(9, 246, 60) rgb(6, 151, 37) rgb(4, 113, 28) rgb(6, 151, 37);
+    -fx-border-width: 4;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(223, 225, 234);
+    -fx-font-size: 16;
+}
+.new-game-menu-play:hover {
+    -fx-background-color: rgb(10, 220, 60);
+    -fx-border-color: rgb(12, 255, 70) rgb(8, 180, 45) rgb(6, 140, 35) rgb(8, 180, 45);
+}
+
+.new-game-menu-play:pressed {
+    -fx-background-color: rgb(5, 150, 35);
+    -fx-border-color: rgb(3, 90, 20) rgb(4, 110, 25) rgb(7, 180, 45) rgb(4, 110, 25);
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.3), 4, 0.5, 0, 1);
+}
+.new-game-menu-canvas {
+    -fx-background-color: #737373;
+    -fx-border-color: #696969 #696969 #595959 #696969;
+    -fx-border-width: 5;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+}
+.new-game-menu-switcher-no-active {
+    -fx-background-color: transparent;
+    -fx-border-color: #696969;
+    -fx-border-width: 5;
+    -fx-padding: 10;
+    -fx-font-weight: bold;
+}
+.new-game-menu-switcher-active {
+    -fx-background-color: transparent;
+    -fx-border-color: #696969 #696969 transparent #696969;
+    -fx-border-width: 5;
+    -fx-font-weight: bold;
+}
+
+
+.new-game-seed-label {
+    -fx-text-fill: #f0f0f0;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+}
+
+/* Поле ввода (TextField) */
+.new-game-seed-field {
+    -fx-background-color: #555555;
+    -fx-text-fill: #eeeeee;
+    -fx-font-size: 16px;
+    -fx-padding: 5 10 5 10;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #888888;
+    -fx-border-width: 1.5;
+    -fx-prompt-text-fill: #bbbbbb;
+    -fx-cursor: text;
+    -fx-pref-width: 150px;
+}
+
+.new-game-seed-field:focused {
+    -fx-border-color: #66aaff;
+    -fx-background-color: #444444;
+}
+
+/* Кнопка */
+.new-game-seed-button {
+    -fx-background-color: #666666;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #555555;
+    -fx-border-width: 1.5;
+    -fx-padding: 5 10 5 10;
+    -fx-cursor: hand;
+    -fx-font-size: 16px;
+    -fx-text-fill: #eeeeee;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 2,0,0,1 );
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+}
+
+.new-game-seed-button:hover {
+    -fx-background-color: #77aaff;
+    -fx-text-fill: white;
+    -fx-border-color: #5599dd;
+}
+
+.new-game-seed-button:pressed {
+    -fx-background-color: #4488cc;
+    -fx-border-color: #336699;
+}

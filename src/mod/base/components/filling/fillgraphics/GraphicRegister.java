@@ -8,6 +8,7 @@ import mod.base.components.filling.fillgraphics.settings.controls.ControlMenu;
 import mod.base.components.filling.fillgraphics.settings.graphics.GraphicMenu;
 import mod.base.components.filling.fillgraphics.settings.languages.LanguagePane;
 import mod.base.components.filling.fillgraphics.settings.sounds.SoundMenu;
+import mod.base.components.worlds.graphics.offline.interfaces.NewGameMenu;
 import mod.base.components.worlds.graphics.offline.interfaces.OfflineMenu;
 import mod.base.modification.Base;
 import mod.base.modification.graphics.components.SoundsGraphicComponent;
@@ -22,7 +23,8 @@ public final class GraphicRegister {
     SETTINGS_GRAPHIC_MENU = register(new GraphicMenu(NameConstant.MENU_IDENTIFIER.SETTINGS_GRAPHIC_MENU)),
     SETTINGS_CONTROL_MENU = register(new ControlMenu(NameConstant.MENU_IDENTIFIER.SETTINGS_CONTROL_MENU)),
     SETTINGS_SOUND_MENU = register(new SoundMenu(NameConstant.MENU_IDENTIFIER.SETTINGS_SOUND_MENU)),
-    OFFLINE_PANE = register(new OfflineMenu(NameConstant.MENU_IDENTIFIER.OFFLINE_MENU))
+    OFFLINE_PANE = register(new OfflineMenu(NameConstant.MENU_IDENTIFIER.OFFLINE_MENU)),
+    NEW_GAME_MENU = register (new NewGameMenu(NameConstant.MENU_IDENTIFIER.NEW_GAME_MENU))
     ;
 
 

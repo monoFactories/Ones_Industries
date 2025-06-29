@@ -1,6 +1,5 @@
 package mod.base.components.storages;
 
-import core.gameActions.Debug;
 import game_logic.repositories.Identifier;
 import mod.base.modification.Base;
 import mod.base.modification.repositories.sounds.SoundRepository;
@@ -28,7 +27,7 @@ public class SoundTagStorage {
     }
     public static Identifier getNextID (String tag) {
         if (tag != null) {
-            Base.getMod().debug ("all entries in tag storage: " + haveTagsMap);
+            //Base.getMod().debug ("all entries in tag storage: " + haveTagsMap);
             TagEntry entry = haveTagsMap.get(tag);
             if (entry != null)
                 return entry.getNextID();
