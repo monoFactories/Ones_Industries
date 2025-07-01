@@ -1,5 +1,6 @@
 package core.moding;
 
+import core.gameActions.Debug;
 import game_logic.Game;
 import game_logic.repositories.LanguageRepository;
 import core.configs.languages.LanguageInputStream;
@@ -63,6 +64,7 @@ public final class ModParameter {
                 if (current != null) {
                     if (current.getName().endsWith(".lang")) {
                         String name = LanguageInputStream.getName(modFile.getInputStream(current));
+                        Debug.debug (() -> "Mod [" + getName() + "] have language with name: " + name);
                         String path = current.getName();
                         if (name != null) {
                             langPathsTable.put(name.toLowerCase(), path);
@@ -76,6 +78,7 @@ public final class ModParameter {
     }
     public Set<String> getListLanguages () {
         updateLangPathsTable();
+
         return langPathsTable.keySet();
     }
 }

@@ -1,5 +1,8 @@
 package core.configs.languages;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import core.gameActions.Debug;
 import game_logic.Game;
 import game_logic.repositories.LanguageRepository;
 
@@ -22,30 +25,11 @@ public class LanguageOutputStream implements Closeable {
         bwr = new BufferedWriter (new FileWriter(pathFile));
     }
     public void writeLanguage (LanguageRepository language) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(LanguageRepository.class, LanguageJson.ADAPTER).create();
         try {
-            bwr.write(language.getLanguageName());
-            bwr.newLine();
-            ConcurrentHashMap<String, ConcurrentHashMap<String, String>> languageMap = language.getLanguageParts();
-            languageMap.forEach((s, chm) -> {
-                try {
-                    bwr.write(s);
-                    bwr.newLine();
-                    chm.forEach((s1, s2) -> {
-                        if (s1 != null && s2 != null) {
-                            try {
-                                bwr.write(s1 + "=" + s2);
-                                bwr.newLine();
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                    });
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-        } catch (Exception ex) {
-            Game.log (Level.WARNING, "Exception when write language ", ex);
+            bwr.write(gson.toJson(language));
+        } catch (Exception e) {
+            Debug.debug(Level.WARNING, "Exception when write language ", e);
         }
     }
     public void close () throws IOException {

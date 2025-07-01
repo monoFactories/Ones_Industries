@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Language {
     private final ConcurrentHashMap<String, String> english_lang;
     public Language () {
-        this(new ConcurrentHashMap<String, String>());
+        this(new ConcurrentHashMap<>());
     }
     public Language (ConcurrentHashMap<String, String> translates) {
         if (translates != null)
