@@ -23,7 +23,9 @@ public class ModResourceReader implements AutoCloseable {
     public InputStream getResource (String s) {
         try {
             ZipEntry z = JAR.getEntry(s);
-            return JAR.getInputStream(z);
+            if (z != null)
+                return JAR.getInputStream(z);
+            return null;
         }
         catch (IOException e) {
             Game.log(Level.WARNING, "couldn't read the resource", e);
