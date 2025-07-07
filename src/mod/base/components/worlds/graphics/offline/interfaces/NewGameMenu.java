@@ -1,6 +1,8 @@
 package mod.base.components.worlds.graphics.offline.interfaces;
 
+import core.graphics.graphichandlers.GraphicProcessor;
 import core.graphics.objects.NodeParameter;
+import game_logic.GraphicManager;
 import game_logic.repositories.Identifier;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +11,8 @@ import javafx.scene.layout.Pane;
 import mod.base.components.constants.LanguageConstant;
 import mod.base.components.constants.SpecialConstant;
 import mod.base.components.constants.StyleConstant;
+import mod.base.components.worlds.party.GameParty;
+import mod.base.modification.Base;
 import mod.base.modification.graphics.components.SoundsGraphicComponent;
 import mod.base.modification.graphics.utils.ButtonSwitchFactory;
 import mod.base.modification.graphics.utils.InputFieldCreator;
@@ -36,6 +40,7 @@ public class NewGameMenu extends SoundsGraphicComponent {
         play.getStyleClass().add(StyleConstant.NEW_GAME_MENU.PLAY);
         TagManagement.addTagInId(play, SpecialConstant.INTERFACE.ID_ENABLED_SOUND);
         addNode (play, NodeParameter.createRelativeSizeAndCoordinate(83, 2, 15, 6));
+
         //
         int count = 2;
         double x = 20, width = 60, widthPerCount = width / count, y = 20, switcherHeight = 8;
@@ -57,19 +62,33 @@ public class NewGameMenu extends SoundsGraphicComponent {
         loadNewSeed.setText("↻");
         loadNewSeed.setOnAction(ae -> field.setText(String.valueOf(new Random().nextLong())));
         loadNewSeed.getStyleClass().add(StyleConstant.NEW_GAME_MENU.SEED_BUTTON);
+
+        play.setOnAction(ae -> {
+            GameParty party = GameParty.getInstance (field.getText().hashCode());
+            PartyMenu partyMenu = new PartyMenu(Base.getID("party_menu"));
+            Base.getMod().debug("start Party");
+            Thread partyThread = new Thread(party);
+            partyThread.setDaemon(true);
+            partyThread.start();
+            Base.getMod().debug("set party");
+            partyMenu.setGameParty(party);
+            Base.getMod().debug("party menu add on screen");
+            GraphicManager.hideFromScreen(this.getId());
+            GraphicProcessor.Controller.add (partyMenu);
+        });
         //
         buttonSwitcher.addSwitcher (mainSettings, NodeParameter.createRelativeSizeAndCoordinate(x, y, widthPerCount, switcherHeight), StyleConstant.NEW_GAME_MENU.SWITCHER_NO_ACTIVE, StyleConstant.NEW_GAME_MENU.SWITCHER_ACTIVE)
                 .addNode(seed, fieldSeed.labelParam())
                 .addNode(field, fieldSeed.fieldParam())
                 .addNode(loadNewSeed, fieldSeed.btnParam())
         ;
-        buttonSwitcher.addSwitcher(new Button ("test"), NodeParameter.createRelativeSizeAndCoordinate(x + widthPerCount, y, widthPerCount, switcherHeight));
+        buttonSwitcher.addSwitcher (new Button ("test"), NodeParameter.createRelativeSizeAndCoordinate(x + widthPerCount, y, widthPerCount, switcherHeight));
 
         buttonSwitcher.addOnComponent(this, mainSettings);
     }
 
     @Override
-    public void onAddFromScreen() {
+    public void onAddFromScreen () {
 
     }
 }

@@ -38,7 +38,7 @@
 .new-game-menu-button:pressed {
     -fx-background-color: #858585;
     -fx-border-color: #707070 #8b8b8b #c8c8c8 #8b8b8b;
-    -fx-text-fill: #rgb(223, 222, 186);
+    -fx-text-fill: rgb(223, 222, 186);
 }
 .new-game-menu-play {
     -fx-background-color: rgb(7, 189, 45);

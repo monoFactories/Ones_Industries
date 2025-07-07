@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Registration {
     public static final Registration register = new Registration();
     private final ConcurrentHashMap<String, DualRepository<?>> values;
+
     public Registration() {
         values = new ConcurrentHashMap<>();
     }

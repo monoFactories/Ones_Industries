@@ -3,7 +3,6 @@ package mod.base.components.worlds.graphics.offline.interfaces;
 import game_logic.GraphicManager;
 import game_logic.repositories.Identifier;
 import mod.base.components.constants.LanguageConstant;
-import mod.base.components.constants.NameConstant;
 import mod.base.components.constants.SpecialConstant;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -14,8 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import mod.base.components.filling.fillgraphics.GraphicRegister;
-import mod.base.modification.Base;
+import mod.base.components.registration.fillgraphics.GraphicRegister;
 import mod.base.modification.graphics.components.SoundsGraphicComponent;
 import mod.base.modification.graphics.utils.TagManagement;
 

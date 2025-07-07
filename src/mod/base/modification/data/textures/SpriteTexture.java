@@ -22,14 +22,14 @@ public class SpriteTexture implements AbstractTexture {
             throw new NullPointerException("imageMatrix cannot be null");
         List<Image> imageList = new ArrayList<>();
         for (Image[] matrix : imageMatrix) {
-            imageList.addAll(Arrays.asList(matrix));
+            imageList.addAll (Arrays.asList(matrix));
         }
         this.frames = imageList.toArray(new Image[0]);
     }
 
     @Override
     public Image getTexture(int numFrame) {
-        if (frames.length == 0 || numFrame < 0 || numFrame >= frames.length)
+        if (numFrame < 0 || numFrame >= frames.length)
             return null;
         return frames [numFrame];
     }

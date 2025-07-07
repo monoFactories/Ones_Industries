@@ -2,7 +2,7 @@ package mod.base.components.logics;
 
 import core.gameActions.Debug;
 import core.graphics.graphichandlers.GraphicProcessor;
-import mod.base.components.filling.fillgraphics.settings.SettingMenu;
+import mod.base.components.registration.fillgraphics.settings.SettingMenu;
 import game_logic.Game;
 
 import java.util.logging.Level;
@@ -29,7 +29,7 @@ public final class Style {
             regM("offline_menu");
             regM("new_game");
         } catch (Exception e) {
-            System.out.println("not correct in style");
+            //System.out.println("not correct in style");
             Game.log(Level.INFO, "error initializing the style", e);
         }
         long end = System.nanoTime();

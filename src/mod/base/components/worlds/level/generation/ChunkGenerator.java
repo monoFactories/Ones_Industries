@@ -1,8 +1,9 @@
 package mod.base.components.worlds.level.generation;
 
-import mod.base.components.worlds.level.chunks.AbstractChunk;
-import mod.base.components.worlds.level.chunks.ChunkConstant;
-import mod.base.components.worlds.level.planets.AbstractPlanetNoiseParameter;
+import mod.base.modification.data.worlds.level.chunks.AbstractChunk;
+import mod.base.modification.data.worlds.level.chunks.ChunkConstant;
+import mod.base.modification.data.worlds.level.generation.AbstractChunkGenerator;
+import mod.base.modification.data.worlds.level.planets.AbstractPlanetNoiseParameter;
 import mod.base.modification.data.blocks.terrain.TerrainBlock;
 
 import java.util.ArrayList;
@@ -11,16 +12,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class ChunkGenerator {
-    public static void fillChunk (AbstractChunk chunk, AbstractPlanetNoiseParameter noise) {
-        //List<TerrainBlock> terrains = noise.getTerrainBlocks();
+public class ChunkGenerator implements AbstractChunkGenerator {
+    public static final ChunkGenerator STANDARD_GENERATOR = new ChunkGenerator ();
+    private static void fillGrChunk(AbstractChunk chunk, AbstractPlanetNoiseParameter noise) {
         ApplicantFinder finder = new ApplicantFinder();
-        noise.getTerrainBlocks().forEach(finder::add);
-        //BlockRepository.block.forEach((m, sb) -> sb.forEach((s, block) -> {
-            //    if (block instanceof TerrainBlock terrain) {
-                //        terrains.add(terrain);
-                //    }
-            //}));
+        List<TerrainBlock> terrainsBlocks = noise.getTerrainBlocks();
+        //System.out.println("terrain blocks for planet: {" + noise.getPlanet().getID() + "}, is: " + terrainsBlocks);
+        terrainsBlocks.forEach(finder::add);
         for (int y = 0; y < ChunkConstant.STANDARD_CHUNK_SIZE; y++) {
             int globalY = ChunkConstant.getGlobalCoordinate(chunk.getY(), y);
             for (int x = 0; x < ChunkConstant.STANDARD_CHUNK_SIZE; x++) {
@@ -38,15 +36,21 @@ public class ChunkGenerator {
                         winner = applicants.getFirst();
                     else {
                         double definedStep = noise.getDefinedStepValue();
-                        double defined = noise.getDefinedNoiseValue(globalX, globalY);
+                        double defined = noise.getDefinedNoiseValue(globalX * definedStep, globalY * definedStep);
                         defined = Math.clamp(defined, 0, 0.999999999);
-                        winner = applicants.get((int) (defined * applicants.size()));
+                        winner = applicants.get(((int) (defined * applicants.size())) % applicants.size());
                     }
                     chunk.getChunkEditor().setBlock(winner.getBlock(), x, y);
                 }
             }
         }
     }
+
+    @Override
+    public void fillGroundLayer(AbstractChunk chunk, AbstractPlanetNoiseParameter noise) {
+        fillGrChunk (chunk, noise);
+    }
+
     private record TerrainEntry(TerrainBlock block, double minHumidity, double maxHumidity, double minTemperature, double maxTemperature) {
         TerrainEntry {
             if (block == null) throw new IllegalArgumentException("terrain block couldn't be null");
@@ -118,7 +122,7 @@ public class ChunkGenerator {
                     }
                 }
             });
-            if (minDistance[0] > -1) {
+            if (minDistance[0] > -1 && nearEntry.get() != null) {
                 completed.add(nearEntry.get().block);
             }
             return completed;

@@ -1,24 +1,27 @@
 package mod.base.components.worlds.level.planets;
 
-import mod.base.components.worlds.level.chunks.AbstractChunk;
-import mod.base.components.worlds.level.chunks.ChunkConstant;
-import mod.base.components.worlds.render.BlockSource;
+import game_logic.repositories.Identifier;
+import mod.base.modification.data.worlds.level.AbstractLevel;
+import mod.base.modification.data.worlds.level.chunks.AbstractChunk;
+import mod.base.modification.data.worlds.level.chunks.ChunkConstant;
+import mod.base.modification.data.worlds.level.planets.*;
+import mod.base.modification.data.worlds.render.BlockSource;
 import mod.base.modification.data.blocks.BlockInWorld;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.BiConsumer;
 
-public class SimplePlanet implements AbstractPlanet {
+public abstract class SimplePlanet implements AbstractPlanet {
 
-    private final PlanetParameter parameter;
+    private AbstractPlanetNoiseParameter generationParameter;
+    private final Identifier planetId;
     private final ConcurrentHashMap<Long, AbstractChunk> chunks;
 
-    public SimplePlanet (PlanetParameter parameter) {
-        this.parameter = parameter;
+    public SimplePlanet (Identifier id) {
+        if (id == null)
+            throw new NullPointerException ("invalid id");
+        this.planetId = id;
         chunks = new ConcurrentHashMap<>();
-    }
-    @Override
-    public PlanetParameter getParameter() {
-        return parameter;
     }
 
     @Override
@@ -43,6 +46,11 @@ public class SimplePlanet implements AbstractPlanet {
             public AbstractChunk getChunk(int x, int y) {
                 return chunks.get(ChunkConstant.compositeCoordinate(x, y));
             }
+
+            @Override
+            public void forEach(BiConsumer<Long, AbstractChunk> fun) {
+                chunks.forEach (fun);
+            }
         };
     }
 
@@ -64,5 +72,23 @@ public class SimplePlanet implements AbstractPlanet {
                 return null;
             }
         };
+    }
+
+    @Override
+    public abstract PlanetDescription description();
+
+    @Override
+    public abstract AbstractLevel getLevel();
+
+    @Override
+    public Identifier getID() {
+        return planetId;
+    }
+
+    @Override
+    public AbstractPlanetNoiseParameter getGenerationParameter() {
+        if (generationParameter == null)
+            generationParameter = description().getNoiseParameter().apply(this);
+        return generationParameter;
     }
 }

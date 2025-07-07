@@ -1,8 +1,10 @@
 package mod.base.components.worlds.level.chunks;
 
 import core.management.Matrix;
-import mod.base.components.worlds.level.chunks.io.AbstractChunkSerializer;
 import mod.base.modification.data.blocks.BlockInWorld;
+import mod.base.modification.data.worlds.level.chunks.AbstractChunk;
+import mod.base.modification.data.worlds.level.chunks.AbstractChunkEditor;
+import mod.base.modification.data.worlds.level.chunks.ChunkConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +49,6 @@ public class SimpleChunk implements AbstractChunk {
                 blockMatrix.set(x, y, block);
             }
         };
-    }
-
-    @Override
-    public AbstractChunkSerializer getSerializer() {
-        return null;
     }
 
     @Override

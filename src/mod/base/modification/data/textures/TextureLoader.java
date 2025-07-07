@@ -11,6 +11,7 @@ public class TextureLoader {
     public static AbstractTexture get (InputStream is, int spriteWidth, int spriteHeight) {
         try {
             Image image = new Image(Objects.requireNonNull(is));
+            System.out.println("image input stream is not null");
             if (spriteHeight == 1 && spriteWidth == 1) {
                 return new Texture(image);
             } else {
@@ -26,6 +27,7 @@ public class TextureLoader {
                 return new SpriteTexture(matrixImage);
             }
         } catch (Exception e) {
+            System.out.println ("get UNKNOWN texture");
             return Texture.UNKNOWN;
         }
     }

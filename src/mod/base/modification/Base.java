@@ -3,7 +3,7 @@ package mod.base.modification;
 import core.moding.data.AbstractModRegister;
 import game_logic.managers.controls.ControlsExecutor;
 import game_logic.repositories.Identifier;
-import mod.base.components.filling.fillgraphics.GraphicRegister;
+import mod.base.components.registration.fillgraphics.GraphicRegister;
 import mod.base.components.logics.settings.BaseSettingsHandler;
 import mod.base.components.storages.SoundTagStorage;
 import mod.base.components.worlds.graphics.offline.files.OfflineFileChecker;

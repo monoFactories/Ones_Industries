@@ -2,6 +2,16 @@ package mod.base.components.worlds.render;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import mod.base.modification.Base;
+import mod.base.modification.data.blocks.Block;
+import mod.base.modification.data.blocks.BlockInWorld;
+import mod.base.modification.data.blocks.BlockTextureParameter;
+import mod.base.modification.data.textures.Texture;
+import mod.base.modification.data.worlds.render.AbstractRender;
+import mod.base.modification.data.worlds.render.BlockSource;
+import mod.base.modification.data.worlds.render.RenderParameter;
 
 public class SimpleRender implements AbstractRender {
     /*public static class Render {
@@ -40,6 +50,7 @@ public class SimpleRender implements AbstractRender {
 }*/
     @Override
     public Canvas render(RenderParameter parameter, BlockSource blockSource) {
+        //System.out.println("new render, parameters: [screen width: " + parameter.screenWidth() + ",  screen height: " + parameter.screenHeight() + ", x: " + parameter.x() + " ,y: " + parameter.y() + " ,zoom: " + parameter.zoom());
         double widthPx = parameter.screenWidth();
         double heightPx = parameter.screenHeight();
         double playerX = parameter.x();
@@ -60,14 +71,20 @@ public class SimpleRender implements AbstractRender {
         GraphicsContext frameContext = frame.getGraphicsContext2D();
         for (int y = minY; y <= maxY; y++) {
             for (int x = minX; x <= maxX; x++) {
-                //Image blockTexture = worldTextureManager.getTexture(x, y);
-                //if (blockTexture != null) {
-                //    double screenX = (x - startScreenX) * blockSize;
-                //    double screenY = (heightPx - blockSize * (y - startScreenY)) - blockSize;
-                //    frameContext.drawImage(blockTexture, screenX, screenY, blockSize, blockSize);
-                //}
+                BlockInWorld wBlock = blockSource.getBlock (x, y, 0);
+                if (wBlock != null) {
+                    Block block = wBlock.getBlock();
+                    //System.out.println("block in x = " + x + ", y = " + y + " is: {" + block.getID() + "}");
+                    BlockTextureParameter textureParameter = block.getTexture (wBlock);
+                    double screenX = ((x + textureParameter.offsetX()) - startScreenX) * blockSize;
+                    double screenY = (heightPx - blockSize * ((y + textureParameter.offsetY()) - startScreenY)) - blockSize * textureParameter.sizeY();
+                    frameContext.drawImage (textureParameter.image(), screenX, screenY, textureParameter.sizeX() * blockSize, textureParameter.sizeY() * blockSize);
+                }
             }
         }
+        //frameContext.fillRect (halfBlocksWidth - 0.25 );
+        frameContext.setStroke(Color.RED);
+        frameContext.strokeRect ((halfBlocksWidth - 0.5) * blockSize, (halfBlocksHeight - 0.5) * blockSize, blockSize, blockSize);
         return frame;
     }
 }
