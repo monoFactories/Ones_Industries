@@ -2,16 +2,14 @@ package core.gameStorage;
 
 import core.configs.settings.SettingsHandler;
 import core.gameActions.Debug;
-import core.gameActions.FileManager;
-import core.moding.mod.Mod;
-import core.moding.mod.ModInputStream;
-import game_logic.Game;
+import core.moding.loading.DecentModsGetter;
+import core.moding.mod.LoadingModParameter;
+import core.moding.loading.ModInputStream;
 import game_logic.managers.controls.ControlModManager;
 import game_logic.managers.LanguageModManager;
 import game_logic.repositories.ModsRepository;
 
-import java.io.File;
-import java.util.logging.Level;
+import java.util.List;
 
 public class Loader {
     /// class for loading mods
@@ -20,7 +18,7 @@ public class Loader {
     public static double percentOfLoad = 0.0;
 
     public static void loadingMods () {
-        File mods = FileManager.concatToDirectory("mods");
+        /* File mods = FileManager.concatToDirectory("mods");
         File[] jars = mods.listFiles((f) -> f.exists() && f.isFile() && f.canRead() && f.getName().endsWith(".jar"));
         if (jars != null) {
             try (ModInputStream mis = new ModInputStream()) {
@@ -35,7 +33,7 @@ public class Loader {
                         percentOfLoad += deltaP;
                         state = "loading mod : " + name;
                         long start = System.nanoTime();
-                        Mod mod = mis.getMode(m);
+                        Mod mod = mis.getMod(m);
                         if (mod == null)
                             continue;
                         Debug.debug("running code for loading other mods after load: " + mod.getParameter().getName());
@@ -48,20 +46,42 @@ public class Loader {
             } catch (Exception e) {
                 Game.log(Level.WARNING, "couldn't load mod", e);
             }
+        } */
+
+        DecentModsGetter getter = DecentModsGetter.getModsGetter();
+        ModInputStream mis = ModInputStream.getModInputStream();
+        List<LoadingModParameter> mods = getter.getSortedMods();
+        int ma = mods.size();
+        for (int i = 0; i < ma; i++) {
+            DecentModsGetter newGetter = DecentModsGetter.getModsGetter();
+            if (getter != newGetter) {
+                getter = newGetter;
+                mods = getter.getSortedMods();
+                i = 0;
+                ma = mods.size();
+            }
+            ModInputStream newMis = ModInputStream.getModInputStream();
+            if (mis != newMis)
+                mis = newMis;
+            LoadingModParameter lmp = mods.get(i);
+            percentOfLoad = 75.0 * (i + 1.0) / ma;
+            ModsRepository.add(mis.getMod(lmp.file()));
         }
         int count = ModsRepository.getModsCount();
         System.out.println("count mods for running: " + count);
-        //AtomicInteger c = new AtomicInteger();
         if (count == 0)
             percentOfLoad = 100.0;
-        double deltaPercent = 75.0 / count;
-        ModsRepository.forEach((s, m) -> {
-            state = "running mod : " + m.getParameter().getName();
-            Debug.debug("start run mod: " + s);
-            m.run();
-            Debug.debug("end run mod: " + s);
-            percentOfLoad += deltaPercent;
-        });
+        else {
+            int[] a = {0};
+            ModsRepository.forEach((s, m) -> {
+                a[0]++;
+                state = "running mod : " + m.getParameter().getName();
+                Debug.debug("start run mod: " + s);
+                m.run();
+                Debug.debug("end run mod: " + s);
+                percentOfLoad = 75.0 + (double) a[0] / count;
+            });
+        }
         Debug.debug("start set language");
         LanguageModManager.setLanguage(SettingsHandler.settings.getInfo().getLastLanguage());
         Debug.debug("start loading controls from file");

@@ -54,4 +54,19 @@ public class FileManager {
             }
         } else return true;
     }
+
+    public static FileAndCreateRecord createFileInDirectory(String... paths) {
+        // Получаем полный путь к файлу
+        File file = concatToDirectory(paths);
+
+        // Создаем файл, если он не существует
+        boolean isCreated = existOrCreate(file);
+
+        // Возвращаем объект FileAndCreateRecord с файлом и флагом создания
+        return new FileAndCreateRecord(file, isCreated);
+    }
+
+    public record FileAndCreateRecord(File file, boolean isCreated) {
+
+    }
 }
