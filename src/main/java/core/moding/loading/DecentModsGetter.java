@@ -16,7 +16,9 @@ public abstract class DecentModsGetter {
             FileManager.FileAndCreateRecord datModsRecord = FileManager.createFileInDirectory("dat", "mods");
             FileManager.FileAndCreateRecord modsRecord = FileManager.createFileInDirectory("mods");
             if (datModsRecord.isCreated() && modsRecord.isCreated()) {
-                FilenameFilter fnf = (file, name) -> file.isFile() && name.endsWith(".jar");
+                FilenameFilter fnf = (file, name) -> {
+                    return name.endsWith(".jar");
+                };
                 File[] datModsFiles = datModsRecord.file().listFiles(fnf);
                 File[] mods = modsRecord.file().listFiles(fnf);
                 Map<String, LoadingModParameter> parameters = new HashMap<>();
@@ -28,7 +30,9 @@ public abstract class DecentModsGetter {
                     }
                 }
                 if (datModsFiles != null) {
+                    System.out.println("start iteration in: " + Arrays.toString(datModsFiles));
                     for (File f : datModsFiles) {
+                        System.out.println("file: " + f);
                         LoadingModParameter parameter = ModInputStream.getModInputStream().readLoadingParameter(f);
                         if (parameter != null)
                             parameters.put(parameter.modName(), parameter);
@@ -36,13 +40,14 @@ public abstract class DecentModsGetter {
                 }
                 Set<String> wasLoaded = new HashSet<>();
                 Set<String> needUpdate = new HashSet<>(parameters.keySet());
+                System.out.println("need update: " + needUpdate);
                 boolean hasChange = true;
 
                 List<LoadingModParameter> orderedModList = new ArrayList<>();
-
                 while (hasChange) {
                     hasChange = false;
                     for (String c : needUpdate) {
+                        System.out.println(c);
                         LoadingModParameter lmp = parameters.get(c);
                         String[] dependencies = lmp.dependencies();
                         boolean allLoad = true;
@@ -60,6 +65,7 @@ public abstract class DecentModsGetter {
                         }
                     }
                 }
+                System.out.println(orderedModList);
                 return orderedModList;
             }
             return new ArrayList<>();

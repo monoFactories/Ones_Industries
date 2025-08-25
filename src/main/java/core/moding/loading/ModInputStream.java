@@ -9,6 +9,7 @@ import game_logic.Game;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Enumeration;
@@ -23,15 +24,20 @@ public abstract class ModInputStream {
     public abstract Mod getMod(File f);
     public abstract LoadingModParameter readLoadingParameter(File f);
 
-    private static ModInputStream current = new ModInputStream() {
+    private static final ModInputStream current = new ModInputStream() {
+        private final CustomLoader loader = new CustomLoader(new URL[]{});
         @Override
         public Mod getMod(File modFile) {
             Debug.debug("start loading mod for path \"" + modFile + "\"");
             if (modFile == null || !modFile.exists() || !modFile.isFile())
                 return null;
-            try(ZipFile modJar = getZipFile(modFile);
-                URLClassLoader loader = new URLClassLoader(new URL[]{modFile.toURI().toURL()})) {
+            try(ZipFile modJar = getZipFile(modFile)) {
                 try {
+                    try {
+                        loader.addURL(modFile.toURI().toURL());
+                    } catch (Throwable e) {
+                        Debug.debug(Level.WARNING, "", e);
+                    }
                     ModInfoRecord infoRecord = readInfoRecord(modJar);
                     String modName = infoRecord.name();
                     Class<?> main = loader.loadClass(infoRecord.pathToStartClass());
@@ -63,8 +69,8 @@ public abstract class ModInputStream {
                         }
                         return mod;
                     }
-                } catch (Exception e) {
-                    //
+                } catch (Throwable e) {
+                    Debug.debug(Level.WARNING, "", e);
                 }
 
 
@@ -114,19 +120,20 @@ public abstract class ModInputStream {
             }
             throw new IllegalStateException("couldn't get the ModInfoRecord");
         }
-    };
-    private static boolean needUpdate;
+        static class CustomLoader extends URLClassLoader {
 
-    public static ModInputStream getModInputStream() {
-        needUpdate = false;
-        return current;
-    }
+            public CustomLoader(URL[] urls) {
+                super(urls);
+            }
 
-    public static void setCustomModInputStream(ModInputStream newMod) {
-        if (newMod != null) {
-            needUpdate = true;
-            current = newMod;
+            @Override
+            protected void addURL(URL url) {
+                super.addURL(url);
+            }
         }
+    };
+    public static ModInputStream getModInputStream() {
+        return current;
     }
     
     /*public Mod getMode (File modFile) {

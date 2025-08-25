@@ -52,6 +52,7 @@ public class Loader {
         ModInputStream mis = ModInputStream.getModInputStream();
         List<LoadingModParameter> mods = getter.getSortedMods();
         int ma = mods.size();
+        System.out.println("start cycle: i = 0; max = " + ma);
         for (int i = 0; i < ma; i++) {
             DecentModsGetter newGetter = DecentModsGetter.getModsGetter();
             if (getter != newGetter) {
@@ -64,6 +65,7 @@ public class Loader {
             if (mis != newMis)
                 mis = newMis;
             LoadingModParameter lmp = mods.get(i);
+            System.out.println("current lmp: " + lmp);
             percentOfLoad = 75.0 * (i + 1.0) / ma;
             ModsRepository.add(mis.getMod(lmp.file()));
         }
