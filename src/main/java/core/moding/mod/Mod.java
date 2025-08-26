@@ -20,7 +20,6 @@ public abstract class Mod {
     public Mod (ModParameter parameter) {
         this.modParameter = parameter;
         modFileManager = new ModFileManager(parameter.getName());
-        useModParameter(parameter);
         modRepository = createModRepository();
         if (modRepository == null) throw new NullPointerException ("mod register is null");
         modLanguage = new LanguageRepository();
@@ -57,8 +56,6 @@ public abstract class Mod {
     }
     public final Set<String> getLanguages () {
         return modParameter.getListLanguages();
-    }
-    protected void useModParameter (ModParameter modParameter) {
     }
     protected ModFileManager getModFileManager () {
         return modFileManager;
