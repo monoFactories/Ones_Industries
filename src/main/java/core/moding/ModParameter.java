@@ -81,4 +81,8 @@ public final class ModParameter {
 
         return langPathsTable.keySet();
     }
+
+    public File getPathToArchive() {
+        return pathToArchive;
+    }
 }
